@@ -10,5 +10,10 @@ namespace CRM.Web.UI.Controllers
         {
             return View();
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
+
     }
 }
