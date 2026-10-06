@@ -1,0 +1,1501 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Piistech Academy · Admin</title>
+        <style>
+            :root {
+                --bg: #f5f7fb;
+                --ink: #1b2942;
+                --muted: #7c879b;
+                --line: #e8edf4;
+                --primary: #635bdf;
+                --pale: #eeedfc;
+                --green: #168b70;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font:
+                    14px/1.5 "Segoe UI",
+                    Arial,
+                    sans-serif;
+                color: var(--ink);
+                background: var(--bg);
+            }
+            button,
+            input,
+            select,
+            textarea {
+                font: inherit;
+            }
+            button {
+                cursor: pointer;
+            }
+            button,
+            a,
+            input,
+            select,
+            textarea {
+                outline-offset: 4px;
+            }
+            button {
+                border: 0;
+                background: none;
+                color: inherit;
+            }
+            aside {
+                position: fixed;
+                inset: 0 auto 0 0;
+                width: 242px;
+                background: white;
+                border-right: 1px solid var(--line);
+                padding: 30px 18px;
+                display: flex;
+                flex-direction: column;
+                z-index: 30;
+            }
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 23px;
+                font-weight: 750;
+                padding: 0 12px 30px;
+                letter-spacing: -1px;
+            }
+            .logo {
+                display: grid;
+                place-items: center;
+                background: var(--primary);
+                color: white;
+                border-radius: 12px;
+                width: 37px;
+                height: 37px;
+                font-size: 23px;
+            }
+            .brand small {
+                font-size: 10px;
+                letter-spacing: 2px;
+                font-weight: 600;
+                display: block;
+                color: var(--muted);
+            }
+            .institution {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 12px;
+                margin-bottom: 27px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+            .avatar {
+                display: inline-grid;
+                place-items: center;
+                width: 35px;
+                height: 35px;
+                border-radius: 10px;
+                background: #eeedfc;
+                color: #625ada;
+                font-weight: 650;
+                flex-shrink: 0;
+            }
+            .institution small,
+            .person small {
+                display: block;
+                color: var(--muted);
+                font-size: 11px;
+            }
+            .navlabel {
+                font-size: 10px;
+                letter-spacing: 1.5px;
+                color: #9aa4b5;
+                padding: 0 14px;
+                margin: 10px 0;
+            }
+            nav button {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+                padding: 12px 14px;
+                border-radius: 8px;
+                text-align: left;
+                margin-bottom: 3px;
+                color: #69758a;
+                font-weight: 550;
+            }
+            nav button.active {
+                color: var(--primary);
+                background: var(--pale);
+            }
+            nav button:hover {
+                background: #f4f3ff;
+            }
+            .icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 19px;
+                height: 19px;
+            }
+            .icon svg {
+                width: 19px;
+                height: 19px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 1.7;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            .upgrade {
+                margin-top: auto;
+                padding: 15px;
+                background: #f7f7fd;
+                border-radius: 12px;
+                font-size: 12px;
+            }
+            .upgrade b {
+                display: block;
+                margin-bottom: 5px;
+            }
+            .upgrade p {
+                color: var(--muted);
+                margin: 5px 0 10px;
+            }
+            .bar {
+                height: 5px;
+                border-radius: 8px;
+                background: #eaeaf5;
+                overflow: hidden;
+            }
+            .bar i {
+                display: block;
+                height: 100%;
+                background: var(--primary);
+                border-radius: 8px;
+            }
+            main {
+                margin-left: 242px;
+            }
+            header {
+                height: 83px;
+                background: white;
+                border-bottom: 1px solid var(--line);
+                padding: 0 36px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+            }
+            .crumb {
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .header-right {
+                display: flex;
+                align-items: center;
+                gap: 22px;
+            }
+            .person {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                font-size: 12px;
+            }
+            .content {
+                padding: 31px 36px 20px;
+                max-width: 1600px;
+                margin: auto;
+            }
+            .heading {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                margin-bottom: 27px;
+            }
+            h1 {
+                font-size: 27px;
+                letter-spacing: -0.8px;
+                margin: 0 0 5px;
+                font-weight: 650;
+            }
+            p {
+                margin: 0;
+                color: var(--muted);
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+            .btn {
+                border: 1px solid #dfe4ec;
+                border-radius: 8px;
+                padding: 9px 14px;
+                background: white;
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                font-size: 12px;
+                font-weight: 600;
+            }
+            .btn.primary {
+                background: var(--primary);
+                border-color: var(--primary);
+                color: white;
+            }
+            .btn:hover {
+                filter: brightness(0.97);
+            }
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 19px;
+                margin-bottom: 23px;
+            }
+            .stat,
+            .card {
+                background: white;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+            }
+            .stat {
+                padding: 20px;
+            }
+            .stat-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #788397;
+                font-size: 12px;
+            }
+            .stat-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 9px;
+                background: var(--pale);
+                color: var(--primary);
+                display: grid;
+                place-items: center;
+            }
+            .stat strong {
+                display: block;
+                font-size: 29px;
+                font-weight: 650;
+                letter-spacing: -0.6px;
+                margin: 8px 0;
+            }
+            .stat small {
+                font-size: 11px;
+                color: var(--muted);
+            }
+            .up {
+                color: var(--green);
+                font-weight: 600;
+                margin-right: 5px;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1.85fr) minmax(285px, 1fr);
+                gap: 23px;
+                margin-bottom: 23px;
+            }
+            .card-head {
+                padding: 21px 23px 16px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+            }
+            .card h2 {
+                font-size: 15px;
+                font-weight: 650;
+                margin: 0;
+            }
+            .card-head p {
+                font-size: 11px;
+                margin-top: 4px;
+            }
+            .text-btn {
+                font-size: 12px;
+                color: var(--primary);
+                font-weight: 600;
+            }
+            .chart {
+                padding: 0 23px 14px;
+            }
+            .chart svg {
+                width: 100%;
+                height: 205px;
+                overflow: visible;
+            }
+            .legend {
+                font-size: 11px;
+                color: var(--muted);
+                display: flex;
+                gap: 16px;
+                align-items: center;
+            }
+            .dot {
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--primary);
+                margin-right: 5px;
+            }
+            .donut-area {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 26px;
+                padding: 20px 18px 28px;
+            }
+            .donut {
+                width: 142px;
+                height: 142px;
+                border-radius: 50%;
+                background: conic-gradient(#635bdf 0 62%, #aea9ef 62% 86%, #e8e6fb 86%);
+                display: grid;
+                place-items: center;
+                flex-shrink: 0;
+            }
+            .donut > div {
+                background: white;
+                width: 109px;
+                height: 109px;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .donut strong {
+                font-size: 28px;
+            }
+            .donut small {
+                font-size: 10px;
+                color: var(--muted);
+            }
+            .key {
+                font-size: 11px;
+                color: var(--muted);
+                margin: 12px 0;
+            }
+            .key b {
+                display: block;
+                color: var(--ink);
+                font-size: 14px;
+                margin-left: 12px;
+            }
+            .table-wrap {
+                overflow: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                text-align: left;
+                white-space: nowrap;
+            }
+            th {
+                background: #fafbfe;
+                color: #8892a4;
+                font-size: 10px;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+            td,
+            th {
+                padding: 14px 22px;
+                border-bottom: 1px solid #f0f2f6;
+            }
+            td {
+                font-size: 12px;
+            }
+            tr:last-child td {
+                border-bottom: 0;
+            }
+            .badge {
+                font-size: 10px;
+                font-weight: 600;
+                padding: 4px 9px;
+                border-radius: 5px;
+                display: inline-block;
+                background: #edfaf5;
+                color: #25856b;
+            }
+            .badge.Draft,
+            .badge.Pending,
+            .badge.Scheduled {
+                background: #fff7e8;
+                color: #b0812b;
+            }
+            .badge.Published,
+            .badge.Completed {
+                background: #eeedff;
+                color: #7164cf;
+            }
+            .badge.Overdue {
+                background: #fff0f0;
+                color: #c26060;
+            }
+            .course-name {
+                display: flex;
+                align-items: center;
+                gap: 11px;
+            }
+            .course-tile {
+                width: 39px;
+                height: 39px;
+                background: #eeedfc;
+                color: var(--primary);
+                border-radius: 8px;
+                display: grid;
+                place-items: center;
+                font-weight: 700;
+            }
+            .course-name small {
+                color: var(--muted);
+                display: block;
+                font-size: 10px;
+                margin-top: 3px;
+            }
+            .session {
+                display: flex;
+                gap: 13px;
+                padding: 17px 23px;
+                border-top: 1px solid #f0f2f6;
+            }
+            .session-date {
+                width: 43px;
+                flex-shrink: 0;
+                text-align: center;
+                background: #f5f4fe;
+                border-radius: 8px;
+                color: var(--primary);
+                padding: 4px;
+            }
+            .session-date small {
+                display: block;
+                font-size: 9px;
+            }
+            .session-date b {
+                font-size: 19px;
+            }
+            .session strong {
+                font-size: 12px;
+            }
+            .session p {
+                font-size: 10px;
+                margin: 4px 0;
+            }
+            .session-bottom {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                font-size: 10px;
+                color: var(--muted);
+            }
+            footer {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                margin-top: 26px;
+                color: #97a0b0;
+                font-size: 10px;
+            }
+            .toolbar {
+                display: flex;
+                gap: 12px;
+                padding: 18px 22px;
+                border-bottom: 1px solid var(--line);
+            }
+            input,
+            select,
+            textarea {
+                border: 1px solid #dfe4ec;
+                border-radius: 7px;
+                padding: 10px 12px;
+                background: white;
+                color: var(--ink);
+                max-width: 100%;
+            }
+            .toolbar input {
+                flex: 1;
+                min-width: 100px;
+            }
+            .toolbar select {
+                min-width: 130px;
+            }
+            .empty {
+                padding: 45px;
+                text-align: center;
+                color: var(--muted);
+            }
+            .mobile-menu {
+                display: none;
+            }
+            .notice {
+                position: fixed;
+                right: 25px;
+                bottom: 25px;
+                padding: 14px 22px;
+                background: #263650;
+                color: white;
+                box-shadow: 0 8px 35px #17243922;
+                border-radius: 10px;
+                z-index: 100;
+                max-width: 90vw;
+            }
+            .notice:empty {
+                display: none;
+            }
+            dialog {
+                border: 1px solid var(--line);
+                border-radius: 15px;
+                padding: 0;
+                width: 490px;
+                max-width: calc(100% - 30px);
+                box-shadow: 0 25px 90px #14213d33;
+            }
+            dialog::backdrop {
+                background: #14213d66;
+                backdrop-filter: blur(3px);
+            }
+            .modal-head {
+                padding: 22px;
+                border-bottom: 1px solid var(--line);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .modal-head h2 {
+                margin: 0;
+                font-size: 19px;
+            }
+            .form-body {
+                padding: 22px;
+                display: grid;
+                gap: 16px;
+            }
+            label {
+                font-size: 12px;
+                font-weight: 600;
+                display: grid;
+                gap: 6px;
+            }
+            dialog .actions {
+                padding: 17px 22px;
+                border-top: 1px solid var(--line);
+                justify-content: flex-end;
+            }
+            .settings {
+                padding: 24px;
+                display: grid;
+                gap: 20px;
+                max-width: 680px;
+            }
+            .report-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .report-box {
+                padding: 24px;
+            }
+            .report-box p {
+                margin: 10px 0 20px;
+                font-size: 12px;
+            }
+            .hint {
+                padding: 12px 20px;
+                background: #f4f3fe;
+                color: #777096;
+                font-size: 11px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+            .backdrop {
+                display: none;
+            }
+            @@media (min-width: 1450px) {
+                .content {
+                    padding-top: 40px;
+                }
+                .chart svg {
+                    height: 240px;
+                }
+                .stat {
+                    padding: 25px;
+                }
+            }
+            @@media (max-width: 1150px) {
+                aside {
+                    width: 210px;
+                }
+                main {
+                    margin-left: 210px;
+                }
+                .content {
+                    padding: 25px 23px;
+                }
+                header {
+                    padding: 0 23px;
+                }
+                .stats {
+                    gap: 12px;
+                }
+                .stat {
+                    padding: 16px;
+                }
+                .grid {
+                    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+                    gap: 16px;
+                }
+                .donut-area {
+                    gap: 12px;
+                }
+                .donut {
+                    width: 120px;
+                    height: 120px;
+                }
+                .donut > div {
+                    width: 92px;
+                    height: 92px;
+                }
+                .header-right {
+                    gap: 10px;
+                }
+            }
+            @@media (max-width: 900px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+                .stats {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .report-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+            @@media (max-width: 650px) {
+                aside {
+                    transform: translateX(-100%);
+                    transition: 0.2s;
+                    width: 240px;
+                }
+                body.menu aside {
+                    transform: translateX(0);
+                }
+                body.menu .backdrop {
+                    display: block;
+                    position: fixed;
+                    inset: 0;
+                    background: #10213c66;
+                    z-index: 20;
+                }
+                main {
+                    margin: 0;
+                }
+                header {
+                    height: 68px;
+                    padding: 0 18px;
+                }
+                .mobile-menu {
+                    display: block;
+                }
+                .crumb {
+                    display: none;
+                }
+                .content {
+                    padding: 24px 16px;
+                }
+                .heading {
+                    align-items: flex-start;
+                    flex-direction: column;
+                }
+                h1 {
+                    font-size: 25px;
+                }
+                .heading .actions {
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .stats {
+                    gap: 10px;
+                }
+                .stat strong {
+                    font-size: 24px;
+                }
+                .stat {
+                    padding: 14px;
+                }
+                .stat small {
+                    font-size: 10px;
+                }
+                .header-right .person div {
+                    display: none;
+                }
+                .report-grid {
+                    grid-template-columns: 1fr;
+                }
+                .toolbar {
+                    padding: 14px;
+                    flex-wrap: wrap;
+                }
+                .toolbar select {
+                    min-width: 100px;
+                }
+                .upgrade {
+                    margin-top: 25px;
+                }
+                aside {
+                    overflow: auto;
+                }
+                .card-head {
+                    padding: 18px;
+                }
+                .session {
+                    padding: 16px 18px;
+                }
+                footer {
+                    flex-direction: column;
+                }
+                .donut-area {
+                    gap: 40px;
+                }
+                .stat-top {
+                    font-size: 11px;
+                }
+                .stat-icon {
+                    width: 29px;
+                    height: 29px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="backdrop" onclick="toggleMenu()"></div>
+        <aside>
+            <div class="brand">
+                <span class="logo">p</span>
+                <div>piistech<small>ACADEMY</small></div>
+            </div>
+            <div class="institution">
+                <span class="avatar">PA</span>
+                <div>
+                    <b style="font-size: 12px" id="institutionLabel">Piistech Academy</b
+                    ><small>Institution workspace</small>
+                </div>
+            </div>
+            <div class="navlabel">WORKSPACE</div>
+            <nav id="nav"></nav>
+            <div class="upgrade">
+                <b>Professional plan <span style="color: #635bdf">✦</span></b>
+                <p>Demo workspace · 6 of 20 courses</p>
+                <div class="bar"><i style="width: 30%"></i></div>
+                <button class="text-btn" style="padding: 12px 0 0" onclick="go('Settings')">
+                    Manage institution →
+                </button>
+            </div>
+        </aside>
+        <main>
+            <header>
+                <button class="mobile-menu" aria-label="Open navigation" onclick="toggleMenu()">
+                    ☰
+                </button>
+                <div class="crumb">
+                    Workspace <span style="margin: 0 12px; color: #c1c6d0">/</span
+                    ><span id="crumb">Overview</span>
+                </div>
+                <div class="header-right">
+                    <span style="font-size: 11px; color: #8a93a4">● Demo mode</span
+                    ><button
+                        aria-label="Notifications"
+                        onclick="showNotifications()"
+                        id="bell"
+                    ></button
+                    ><span style="height: 28px; border-left: 1px solid var(--line)"></span>
+                    <div class="person">
+                        <span
+                            class="avatar"
+                            style="background: #f5e9db; color: #996e45; border-radius: 50%"
+                            >PK</span
+                        >
+                        <div><b>Parves Kawser</b><small>Institution Admin</small></div>
+                    </div>
+                </div>
+            </header>
+            <div class="content">
+                
+                @RenderBody()
+
+               
+
+                <footer>
+                    <span>© 2026 Piistech Academy. All rights reserved.</span
+                    ><span>HTML prototype · Sample data · Asia/Dhaka</span>
+                </footer>
+            </div>
+        </main>
+        <dialog id="modal">
+            <form id="form">
+                <div class="modal-head">
+                    <h2 id="modalTitle"></h2>
+                    <button type="button" aria-label="Close dialog" onclick="closeModal()">
+                        ✕
+                    </button>
+                </div>
+                <div class="form-body" id="fields"></div>
+                <div class="actions">
+                    <button class="btn" type="button" onclick="closeModal()">Cancel</button
+                    ><button class="btn primary" type="submit">Save changes</button>
+                </div>
+            </form>
+        </dialog>
+        <div class="notice" role="status" id="toast"></div>
+        <script>
+            const paths = {
+                Overview: "M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z",
+                Courses: "M4 4h6l2 2 2-2h6v16h-6l-2 2-2-2H4z M12 6v16",
+                Students:
+                    "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M18 8a3 3 0 0 1 0 6 M22 21v-2a4 4 0 0 0-3-4",
+                Instructors: "M12 3 2 8l10 5 10-5-10-5 M6 10v7c4 3 8 3 12 0v-7 M22 8v8",
+                Batches: "M4 5h16v16H4z M8 2v6 M16 2v6 M4 11h16",
+                Payments: "M3 5h18v14H3z M3 10h18 M7 15h4",
+                Attendance: "M5 3h14v18H5z M9 8l2 2 4-4 M9 15h6",
+                Quizzes: "M5 3h14v18H5z M9 7h6 M9 12h6 M9 17h3",
+                Reports: "M4 20V10 M10 20V4 M16 20v-8 M22 20H2",
+                Settings:
+                    "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z",
+                Bell: "M18 8a6 6 0 0 0-12 0v6l-2 3h16l-2-3V8 M10 21h4",
+            };
+            const icon = (n) =>
+                `<span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[n] || paths.Courses}"/></svg></span>`;
+            const seed = {
+                Courses: [
+                    {
+                        id: 1,
+                        name: "Full Stack ASP.NET Core",
+                        category: "Development",
+                        instructor: "Parves Kawser",
+                        students: 128,
+                        price: 12000,
+                        status: "Published",
+                    },
+                    {
+                        id: 2,
+                        name: "UI/UX Design Essentials",
+                        category: "Design",
+                        instructor: "Nusrat Jahan",
+                        students: 86,
+                        price: 8000,
+                        status: "Published",
+                    },
+                    {
+                        id: 3,
+                        name: "Digital Marketing Masterclass",
+                        category: "Marketing",
+                        instructor: "Tanvir Ahmed",
+                        students: 64,
+                        price: 6000,
+                        status: "Published",
+                    },
+                    {
+                        id: 4,
+                        name: "Software Quality Assurance",
+                        category: "Development",
+                        instructor: "Farhana Islam",
+                        students: 42,
+                        price: 9000,
+                        status: "Draft",
+                    },
+                    {
+                        id: 5,
+                        name: "Flutter App Development",
+                        category: "Development",
+                        instructor: "Parves Kawser",
+                        students: 56,
+                        price: 10000,
+                        status: "Published",
+                    },
+                    {
+                        id: 6,
+                        name: "Business English",
+                        category: "Language",
+                        instructor: "Nusrat Jahan",
+                        students: 24,
+                        price: 4000,
+                        status: "Draft",
+                    },
+                ],
+                Students: [
+                    {
+                        id: 1,
+                        name: "Ayesha Rahman",
+                        email: "ayesha@example.com",
+                        course: "Full Stack ASP.NET Core",
+                        progress: 72,
+                        status: "Active",
+                    },
+                    {
+                        id: 2,
+                        name: "Mehedi Hasan",
+                        email: "mehedi@example.com",
+                        course: "UI/UX Design Essentials",
+                        progress: 48,
+                        status: "Active",
+                    },
+                    {
+                        id: 3,
+                        name: "Sadika Islam",
+                        email: "sadika@example.com",
+                        course: "Digital Marketing Masterclass",
+                        progress: 100,
+                        status: "Completed",
+                    },
+                    {
+                        id: 4,
+                        name: "Rafi Chowdhury",
+                        email: "rafi@example.com",
+                        course: "Flutter App Development",
+                        progress: 31,
+                        status: "Active",
+                    },
+                    {
+                        id: 5,
+                        name: "Nabila Akter",
+                        email: "nabila@example.com",
+                        course: "Full Stack ASP.NET Core",
+                        progress: 0,
+                        status: "Pending",
+                    },
+                ],
+                Instructors: [
+                    {
+                        id: 1,
+                        name: "Parves Kawser",
+                        email: "parves@example.com",
+                        expertise: ".NET & Flutter",
+                        status: "Active",
+                    },
+                    {
+                        id: 2,
+                        name: "Nusrat Jahan",
+                        email: "nusrat@example.com",
+                        expertise: "Design & Communication",
+                        status: "Active",
+                    },
+                    {
+                        id: 3,
+                        name: "Tanvir Ahmed",
+                        email: "tanvir@example.com",
+                        expertise: "Digital Marketing",
+                        status: "Active",
+                    },
+                    {
+                        id: 4,
+                        name: "Farhana Islam",
+                        email: "farhana@example.com",
+                        expertise: "Software Testing",
+                        status: "Pending",
+                    },
+                ],
+                Batches: [
+                    {
+                        id: 1,
+                        name: "ASP.NET · Batch 12",
+                        course: "Full Stack ASP.NET Core",
+                        schedule: "Mon, Wed · 9:00 PM",
+                        capacity: 40,
+                        status: "Active",
+                    },
+                    {
+                        id: 2,
+                        name: "Design · Batch 08",
+                        course: "UI/UX Design Essentials",
+                        schedule: "Tue, Thu · 7:00 PM",
+                        capacity: 30,
+                        status: "Active",
+                    },
+                    {
+                        id: 3,
+                        name: "Marketing · Batch 05",
+                        course: "Digital Marketing Masterclass",
+                        schedule: "Fri, Sat · 8:00 PM",
+                        capacity: 35,
+                        status: "Scheduled",
+                    },
+                ],
+                Payments: [
+                    {
+                        id: 1001,
+                        name: "Ayesha Rahman",
+                        course: "Full Stack ASP.NET Core",
+                        amount: 4000,
+                        method: "bKash",
+                        status: "Paid",
+                    },
+                    {
+                        id: 1002,
+                        name: "Mehedi Hasan",
+                        course: "UI/UX Design Essentials",
+                        amount: 8000,
+                        method: "Bank transfer",
+                        status: "Pending",
+                    },
+                    {
+                        id: 1003,
+                        name: "Sadika Islam",
+                        course: "Digital Marketing Masterclass",
+                        amount: 6000,
+                        method: "Card",
+                        status: "Paid",
+                    },
+                    {
+                        id: 1004,
+                        name: "Rafi Chowdhury",
+                        course: "Flutter App Development",
+                        amount: 5000,
+                        method: "Nagad",
+                        status: "Overdue",
+                    },
+                ],
+                Attendance: [
+                    {
+                        id: 1,
+                        name: "Ayesha Rahman",
+                        course: "Full Stack ASP.NET Core",
+                        date: "2026-10-05",
+                        status: "Present",
+                    },
+                    {
+                        id: 2,
+                        name: "Nabila Akter",
+                        course: "Full Stack ASP.NET Core",
+                        date: "2026-10-05",
+                        status: "Absent",
+                    },
+                    {
+                        id: 3,
+                        name: "Mehedi Hasan",
+                        course: "UI/UX Design Essentials",
+                        date: "2026-10-05",
+                        status: "Late",
+                    },
+                ],
+                Quizzes: [
+                    {
+                        id: 1,
+                        name: "C# Fundamentals",
+                        course: "Full Stack ASP.NET Core",
+                        questions: 20,
+                        duration: 30,
+                        status: "Published",
+                    },
+                    {
+                        id: 2,
+                        name: "Design Principles",
+                        course: "UI/UX Design Essentials",
+                        questions: 15,
+                        duration: 20,
+                        status: "Draft",
+                    },
+                    {
+                        id: 3,
+                        name: "Marketing Strategy",
+                        course: "Digital Marketing Masterclass",
+                        questions: 25,
+                        duration: 40,
+                        status: "Scheduled",
+                    },
+                ],
+                settings: {
+                    name: "Piistech Academy",
+                    email: "hello@piistech.com",
+                    timezone: "Asia/Dhaka",
+                    language: "English",
+                    currency: "BDT",
+                },
+            };
+            let db;
+            try {
+                db =
+                    JSON.parse(localStorage.getItem("piistech-lms-demo-v1")) ||
+                    structuredClone(seed);
+            } catch {
+                db = structuredClone(seed);
+            }
+            let page = "Overview",
+                query = "",
+                filter = "All",
+                editing = null;
+            const esc = (s) =>
+                String(s ?? "").replace(
+                    /[&<>"']/g,
+                    (c) =>
+                        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+                            c
+                        ],
+                );
+            const money = (n) => "৳" + Number(n).toLocaleString("en-IN");
+            const badge = (s) => `<span class="badge ${esc(s)}">${esc(s)}</span>`;
+            let toastTimer;
+            function notify(msg) {
+                document.getElementById("toast").textContent = msg;
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(
+                    () => (document.getElementById("toast").textContent = ""),
+                    4000,
+                );
+            }
+            function persist() {
+                try {
+                    localStorage.setItem("piistech-lms-demo-v1", JSON.stringify(db));
+                } catch {
+                    notify("Browser storage is unavailable. Changes last until this page closes.");
+                }
+            }
+            function toggleMenu() {
+                document.body.classList.toggle("menu");
+            }
+            function go(p) {
+                page = p;
+                query = "";
+                filter = "All";
+                document.body.classList.remove("menu");
+                render();
+            }
+            function closeModal() {
+                document.getElementById("modal").close();
+            }
+            function showNotifications() {
+                document.getElementById("modalTitle").textContent = "Notifications";
+                document.getElementById("fields").innerHTML =
+                    "<p>2 courses are waiting for publication.</p><p>1 bank transfer needs verification.</p><p>Your next live class begins at 9:00 PM.</p><small>Sample notifications for this prototype.</small>";
+                document.querySelector("#modal .actions").style.display = "none";
+                document.getElementById("modal").showModal();
+            }
+            function heading(title, sub, actions = "") {
+                return `<div class="heading"><div><h1>${title}</h1><p>${sub}</p></div><div class="actions">${actions}</div></div>`;
+            }
+            function stat(title, value, foot, type) {
+                return `<div class="stat"><div class="stat-top">${title}<span class="stat-icon">${icon(type)}</span></div><strong>${value}</strong><small>${foot}</small></div>`;
+            }
+            function chart() {
+                return `<div class="chart"><div class="legend" style="justify-content:flex-end;margin-bottom:12px"><span><i class="dot"></i>Collections</span><span><i class="dot" style="background:#c9c5f4"></i>Previous period</span></div><svg viewBox="0 0 650 205" role="img" aria-label="Illustrative collections chart from May to October, rising from 85 to 240 thousand taka"><defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8175e6" stop-opacity=".18"/><stop offset="1" stop-color="#8175e6" stop-opacity="0"/></linearGradient></defs><g stroke="#edf0f6" stroke-dasharray="4 5"><path d="M50 20H630M50 65H630M50 110H630M50 155H630"/></g><g fill="#98a1b1" font-size="10"><text x="0" y="24">৳300k</text><text x="0" y="69">৳200k</text><text x="0" y="114">৳100k</text><text x="22" y="159">৳0</text><text x="48" y="192">May</text><text x="159" y="192">Jun</text><text x="274" y="192">Jul</text><text x="387" y="192">Aug</text><text x="500" y="192">Sep</text><text x="609" y="192">Oct</text></g><path d="M55 119C105 118 120 74 170 87S240 122 285 90 355 85 400 67 470 104 515 58 575 58 625 42V155H55Z" fill="url(#fade)"/><path d="M55 139C110 121 121 133 170 120S240 133 285 113 354 116 400 100 470 124 515 93 580 113 625 88" stroke="#c9c5f4" fill="none" stroke-width="2" stroke-dasharray="5 5"/><path d="M55 119C105 118 120 74 170 87S240 122 285 90 355 85 400 67 470 104 515 58 575 58 625 42" fill="none" stroke="#7569db" stroke-width="3"/><circle cx="625" cy="42" r="4" fill="#7569db" stroke="white" stroke-width="2"/></svg></div>`;
+            }
+            function overview() {
+                let paid = db.Payments.filter((x) => x.status === "Paid").reduce(
+                    (n, x) => n + x.amount,
+                    0,
+                );
+                return (
+                    heading(
+                        "Your academy, at a glance",
+                        "Welcome back, Parves. Here’s what’s happening today.",
+                        `<span class="btn">▦ &nbsp; October 2026</span><button class="btn primary" onclick="openEditor('Courses')">＋ Create course</button>`,
+                    ) +
+                    `<div class="stats">${stat(
+                        "Total enrollments",
+                        db.Courses.reduce((n, x) => n + Number(x.students), 0),
+                        '<span class="up">↗ 12.8%</span> vs. last month · sample',
+                        "Students",
+                    )}${stat("Published courses", db.Courses.filter((x) => x.status === "Published").length, db.Courses.filter((x) => x.status === "Draft").length + " courses in draft", "Courses")}${stat("Verified collections", money(paid), "From the demo payment register", "Payments")}${stat("Active instructors", db.Instructors.filter((x) => x.status === "Active").length, "Across all course categories", "Instructors")}</div><div class="grid"><section class="card"><div class="card-head"><div><h2>Collections overview</h2><p>Illustrative six-month performance</p></div><button class="text-btn" onclick="go('Reports')">View reports ↗</button></div>${chart()}</section><section class="card"><div class="card-head"><div><h2>Learning activity</h2><p>Illustrative cohort distribution</p></div></div><div class="donut-area"><div class="donut"><div><strong>86%</strong><small>Engagement rate</small></div></div><div><div class="key"><i class="dot"></i>In progress<b>62%</b></div><div class="key"><i class="dot" style="background:#aea9ef"></i>Completed<b>24%</b></div><div class="key"><i class="dot" style="background:#e8e6fb"></i>Not started<b>14%</b></div></div></div></section></div><div class="grid"><section class="card"><div class="card-head"><div><h2>Popular courses</h2><p>Your learning catalog at a glance</p></div><button class="text-btn" onclick="go('Courses')">View all →</button></div><div class="table-wrap"><table><thead><tr><th>Course name</th><th>Students</th><th>Status</th><th></th></tr></thead><tbody>${db.Courses.slice(
+                        0,
+                        4,
+                    )
+                        .map(
+                            (c) =>
+                                `<tr><td><div class="course-name"><span class="course-tile">${esc(c.category.slice(0, 2).toUpperCase())}</span><div><b>${esc(c.name)}</b><small>${esc(c.instructor)}</small></div></div></td><td>${c.students}</td><td>${badge(c.status)}</td><td><button aria-label="Edit ${esc(c.name)}" onclick="openEditor('Courses',${c.id})">↗</button></td></tr>`,
+                        )
+                        .join(
+                            "",
+                        )}</tbody></table></div></section><section class="card"><div class="card-head"><div><h2>Upcoming live classes</h2><p>All times in Asia/Dhaka</p></div><button class="text-btn" onclick="go('Batches')">View all →</button></div>${[
+                        [
+                            "05",
+                            "OCT",
+                            "ASP.NET Core: Getting started",
+                            "Parves Kawser",
+                            "9:00 – 11:00 PM",
+                        ],
+                        ["06", "OCT", "Wireframing & user flows", "Nusrat Jahan", "7:00 – 9:00 PM"],
+                        ["07", "OCT", "Building REST APIs", "Parves Kawser", "9:00 – 11:00 PM"],
+                    ]
+                        .map(
+                            (s) =>
+                                `<div class="session"><div class="session-date"><small>${s[1]}</small><b>${s[0]}</b></div><div><strong>${s[2]}</strong><p>${s[3]}</p><div class="session-bottom"><span>◷ ${s[4]}</span><span style="color:#635bdf">• Live class</span></div></div></div>`,
+                        )
+                        .join("")}</section></div>`
+                );
+            }
+            const schemas = {
+                Courses: [
+                    ["name", "Course title"],
+                    ["category", "Category"],
+                    ["instructor", "Instructor"],
+                    ["students", "Enrolled students", "number"],
+                    ["price", "Price (BDT)", "number"],
+                    ["status", "Status", ["Draft", "Published", "Archived"]],
+                ],
+                Students: [
+                    ["name", "Student name"],
+                    ["email", "Email", "email"],
+                    ["course", "Course"],
+                    ["progress", "Progress (%)", "number"],
+                    ["status", "Status", ["Pending", "Active", "Completed", "Expired"]],
+                ],
+                Instructors: [
+                    ["name", "Instructor name"],
+                    ["email", "Email", "email"],
+                    ["expertise", "Expertise"],
+                    ["status", "Status", ["Pending", "Active", "Inactive"]],
+                ],
+                Batches: [
+                    ["name", "Batch name"],
+                    ["course", "Course"],
+                    ["schedule", "Schedule"],
+                    ["capacity", "Capacity", "number"],
+                    ["status", "Status", ["Scheduled", "Active", "Completed"]],
+                ],
+                Payments: [
+                    ["name", "Student name"],
+                    ["course", "Course"],
+                    ["amount", "Amount (BDT)", "number"],
+                    ["method", "Payment method", ["bKash", "Nagad", "Card", "Bank transfer"]],
+                    ["status", "Status", ["Pending", "Paid", "Overdue", "Refunded"]],
+                ],
+                Attendance: [
+                    ["name", "Student name"],
+                    ["course", "Course"],
+                    ["date", "Class date", "date"],
+                    ["status", "Attendance", ["Present", "Absent", "Late", "Excused"]],
+                ],
+                Quizzes: [
+                    ["name", "Quiz title"],
+                    ["course", "Course"],
+                    ["questions", "Questions", "number"],
+                    ["duration", "Duration (minutes)", "number"],
+                    ["status", "Status", ["Draft", "Scheduled", "Published", "Closed"]],
+                ],
+            };
+            const singular = {
+                Courses: "course",
+                Students: "student",
+                Instructors: "instructor",
+                Batches: "batch",
+                Payments: "payment",
+                Attendance: "attendance",
+                Quizzes: "quiz",
+            };
+            function tablePage() {
+                return (
+                    heading(
+                        page,
+                        `Manage your institution’s ${page.toLowerCase()} in one place.`,
+                        `<button class="btn" onclick="exportCSV('${page}')">↓ Export CSV</button><button class="btn primary" onclick="openEditor('${page}')">＋ Add ${singular[page]}</button>`,
+                    ) +
+                    (page === "Payments"
+                        ? '<div class="hint">Prototype only. Payment status edits here do not verify or process real transactions.</div>'
+                        : "") +
+                    `<section class="card"><div class="toolbar"><input aria-label="Search ${page}" id="search" placeholder="Search ${page.toLowerCase()}…" oninput="query=this.value;updateRows()"><select aria-label="Filter by status" onchange="filter=this.value;updateRows()"><option>All</option>${schemas[
+                        page
+                    ]
+                        .find((x) => x[0] === "status")[2]
+                        .map((s) => `<option>${s}</option>`)
+                        .join(
+                            "",
+                        )}</select></div><div class="table-wrap"><table><thead><tr>${schemas[page].map((x) => `<th>${x[1]}</th>`).join("")}<th>Action</th></tr></thead><tbody id="rows"></tbody></table></div><div style="padding:14px 22px;font-size:11px;color:var(--muted)" id="count"></div></section>`
+                );
+            }
+            function filtered(p = page) {
+                return db[p].filter(
+                    (x) =>
+                        (filter === "All" || x.status === filter) &&
+                        Object.values(x).join(" ").toLowerCase().includes(query.toLowerCase()),
+                );
+            }
+            function updateRows() {
+                let rows = filtered();
+                document.getElementById("rows").innerHTML = rows.length
+                    ? rows
+                          .map(
+                              (r) =>
+                                  `<tr>${schemas[page].map(([k]) => `<td>${k === "status" ? badge(r[k]) : k === "price" || k === "amount" ? money(r[k]) : k === "progress" ? `<div style="display:flex;gap:10px;align-items:center"><div class="bar" style="width:70px"><i style="width:${Number(r[k])}%"></i></div>${r[k]}%</div>` : k === "name" ? `<b>${esc(r[k])}</b>` : esc(r[k])}</td>`).join("")}<td><button class="text-btn" onclick="openEditor('${page}',${r.id})">Edit</button></td></tr>`,
+                          )
+                          .join("")
+                    : `<tr><td colspan="${schemas[page].length + 1}" class="empty">No matching records. Try another search or add a new record.</td></tr>`;
+                document.getElementById("count").textContent =
+                    `Showing ${rows.length} of ${db[page].length} records`;
+            }
+            function openEditor(type, id) {
+                editing = { type, id };
+                let row = db[type].find((x) => x.id === id) || {};
+                document.querySelector("#modal .actions").style.display = "flex";
+                document.getElementById("modalTitle").textContent =
+                    (id ? "Edit " : "Add ") + singular[type];
+                document.getElementById("fields").innerHTML = schemas[type]
+                    .map(
+                        ([k, label, kind]) =>
+                            `<label>${label}${Array.isArray(kind) ? `<select name="${k}">${kind.map((s) => `<option ${row[k] === s ? "selected" : ""}>${s}</option>`).join("")}</select>` : `<input required name="${k}" type="${kind || "text"}" ${kind === "number" ? `min="0" step="${k === "amount" || k === "price" ? "0.01" : "1"}" ${k === "progress" ? 'max="100"' : ""}` : ""} value="${esc(row[k] ?? "")}">`}</label>`,
+                    )
+                    .join("");
+                document.getElementById("modal").showModal();
+            }
+            document.getElementById("form").addEventListener("submit", (e) => {
+                e.preventDefault();
+                if (!editing) return;
+                let { type, id } = editing;
+                let values = Object.fromEntries(new FormData(e.target));
+                for (let [k, , kind] of schemas[type])
+                    if (kind === "number") values[k] = Number(values[k]);
+                if (
+                    values.email &&
+                    db[type].some(
+                        (r) => r.id !== id && r.email.toLowerCase() === values.email.toLowerCase(),
+                    )
+                )
+                    return notify("This email already exists in this list.");
+                if (id) {
+                    Object.assign(
+                        db[type].find((r) => r.id === id),
+                        values,
+                    );
+                } else {
+                    db[type].push({ ...values, id: Date.now() });
+                }
+                persist();
+                closeModal();
+                render();
+                notify("Demo record saved successfully.");
+                editing = null;
+            });
+            function exportCSV(p) {
+                let rows = p === page && schemas[page] ? filtered(p) : db[p];
+                let keys = schemas[p].map((x) => x[0]);
+                let cell = (v) =>
+                    '"' +
+                    String(v ?? "")
+                        .replace(/^[=+@@-]/, "'$&")
+                        .replace(/"/g, '""') +
+                    '"';
+                let csv =
+                    "\uFEFF" +
+                    [
+                        keys.map(cell).join(","),
+                        ...rows.map((r) => keys.map((k) => cell(r[k])).join(",")),
+                    ].join("\r\n");
+                let url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+                let a = document.createElement("a");
+                a.href = url;
+                a.download = "Piistech_" + p + ".csv";
+                a.click();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                notify("CSV export downloaded.");
+            }
+            function reports() {
+                return (
+                    heading(
+                        "Reports & insights",
+                        "Download operational reports from the current demo records.",
+                    ) +
+                    `<div class="report-grid">${[
+                        [
+                            "Students",
+                            "Enrollment report",
+                            "Student enrollment status and learning progress.",
+                        ],
+                        [
+                            "Payments",
+                            "Collections report",
+                            "Payment amounts, methods, and outstanding statuses.",
+                        ],
+                        [
+                            "Attendance",
+                            "Attendance report",
+                            "Student attendance records by course and date.",
+                        ],
+                        [
+                            "Courses",
+                            "Course catalog report",
+                            "Course pricing, instructors, and publication status.",
+                        ],
+                        [
+                            "Instructors",
+                            "Instructor directory",
+                            "Instructor contact details and approval status.",
+                        ],
+                        [
+                            "Quizzes",
+                            "Assessment report",
+                            "Quiz duration, question counts, and availability.",
+                        ],
+                    ]
+                        .map(
+                            ([p, t, d]) =>
+                                `<section class="card report-box"><span class="stat-icon">${icon(p)}</span><h2 style="margin-top:18px">${t}</h2><p>${d}</p><button class="btn" onclick="exportCSV('${p}')">↓ Download CSV</button></section>`,
+                        )
+                        .join("")}</div>`
+                );
+            }
+            function settings() {
+                return (
+                    heading(
+                        "Institution settings",
+                        "Manage the identity and preferences of your workspace.",
+                    ) +
+                    `<section class="card"><form class="settings" id="settingsForm"><h2>General information</h2><label>Institution name<input name="name" required value="${esc(db.settings.name)}"></label><label>Contact email<input name="email" type="email" required value="${esc(db.settings.email)}"></label><label>Timezone<input name="timezone" value="Asia/Dhaka" readonly></label><label>Interface language<input value="English (prototype)" readonly></label><label>Currency<input value="BDT · Bangladeshi Taka" readonly></label><div><button class="btn primary">Save settings</button></div><p style="font-size:11px">Changes are saved in this browser only. Authentication, payment gateways, and database services are not connected.</p><button class="text-btn" type="button" style="text-align:left;color:#bd6060" onclick="resetDemo()">Reset all demo data</button></form></section>`
+                );
+            }
+            function resetDemo() {
+                if (confirm("Reset all demo changes and restore the original sample data?")) {
+                    db = structuredClone(seed);
+                    persist();
+                    render();
+                    notify("Demo data restored.");
+                }
+            }
+            function render() {
+                document.getElementById("institutionLabel").textContent = db.settings.name;
+                document.getElementById("crumb").textContent = page;
+                document.getElementById("nav").innerHTML = Object.keys(paths)
+                    .filter((n) => n !== "Bell")
+                    .map(
+                        (n) =>
+                            `${n === "Reports" ? '<div class="navlabel" style="margin-top:20px">MANAGEMENT</div>' : ""}<button class="${n === page ? "active" : ""}" ${n === page ? 'aria-current="page"' : ""} onclick="go('${n}')">${icon(n)}${n}</button>`,
+                    )
+                    .join("");
+                document.getElementById("bell").innerHTML = icon("Bell");
+                document.getElementById("view").innerHTML =
+                    page === "Overview"
+                        ? overview()
+                        : page === "Reports"
+                          ? reports()
+                          : page === "Settings"
+                            ? settings()
+                            : tablePage();
+                if (schemas[page]) updateRows();
+                if (page === "Settings")
+                    document.getElementById("settingsForm").onsubmit = (e) => {
+                        e.preventDefault();
+                        Object.assign(db.settings, Object.fromEntries(new FormData(e.target)));
+                        persist();
+                        render();
+                        notify("Institution settings saved.");
+                    };
+            }
+            render();
+        </script>
+    </body>
+</html>

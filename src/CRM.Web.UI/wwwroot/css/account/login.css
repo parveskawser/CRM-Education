@@ -1,0 +1,132 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    color: #172033;
+}
+
+.login-card {
+    width: min(100%, 420px);
+    padding: 38px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+}
+
+.brand {
+    display: inline-grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 12px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+h1 {
+    margin: 22px 0 8px;
+    font-size: 28px;
+    color: #ffb300;
+}
+
+.subtitle {
+    margin: 0 0 28px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+label {
+    display: block;
+    margin: 18px 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+    input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+    }
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin: 18px 0 24px;
+    font-size: 14px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #475569;
+}
+
+    .remember input {
+        width: auto;
+    }
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+button {
+    width: 100%;
+    border: 0;
+    padding: 14px;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+.signup {
+    margin: 24px 0 0;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 28px 22px;
+    }
+
+    .options {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
