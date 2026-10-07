@@ -1,0 +1,118 @@
+﻿
+
+@using CRM.Web.UI.Controllers
+@model List<Attendance>
+
+@{
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="mb-1">Attendance</h2>
+            <p class="text-muted mb-0">
+                View student attendance records
+            </p>
+        </div>
+
+        <span class="badge bg-primary fs-6">
+            Total Records: @Model.Count
+        </span>
+
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Student ID</th>
+                        <th>Course ID</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var attendance in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @attendance.Id
+                            </td>
+
+                            <td>
+                                @attendance.StudentId
+                            </td>
+
+                            <td>
+                                @attendance.CourseId
+                            </td>
+
+                            <td>
+                                @attendance.AttendanceDate.ToString("dd MMM yyyy")
+                            </td>
+
+                            <td>
+
+                                @if (attendance.IsPresent)
+                                {
+                                    <span class="badge bg-success">
+                                        Present
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">
+                                        Absent
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                @attendance.Remarks
+                            </td>
+
+                            <td>
+
+                                <a asp-controller="Attendances"
+                                   asp-action="Detail"
+                                   asp-route-id="@attendance.Id"
+                                   class="btn btn-primary btn-sm">
+                                    View
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            No attendance records are available.
+        </div>
+    }
+
+</div>
