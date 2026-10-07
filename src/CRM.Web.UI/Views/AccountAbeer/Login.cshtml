@@ -1,0 +1,88 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="~/css/AccountAbeer/style.css">
+    <!-- Internal CSS -->
+    <style>
+            .login-card {
+                width: 400px;
+                background: white;
+                padding: 45px;
+                border-radius: 20px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            }
+
+            .login-card h1 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .login-card .subtitle {
+                text-align: center;
+                color: #777;
+                margin-bottom: 30px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <h1>Welcome Back</h1>
+
+        <p class="subtitle">
+            Login to continue to your account
+        </p>
+
+        <form>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+
+            <div class="options">
+
+                <label class="remember">
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <a href="#">Forgot Password?</a>
+
+            </div>
+
+            <!-- Inline CSS -->
+            <button type="submit" style="background: #6366f1;">
+                Login
+            </button>
+
+        </form>
+
+        <p class="bottom-text">
+            Don't have an account?
+            <a href="register.html">Create Account</a>
+        </p>
+
+    </div>
+
+</body>
+
+</html>

@@ -15,6 +15,8 @@ namespace CRM.Framework
         public class Account
         {
             public const string Login = "login";
+
+            public const string Register = "register";
         }
     }
 }
