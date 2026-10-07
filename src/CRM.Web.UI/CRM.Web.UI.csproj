@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CRM.Entities\CRM.Entities.csproj" />
     <ProjectReference Include="..\CRM.Framework\CRM.Framework.csproj" />
   </ItemGroup>
 

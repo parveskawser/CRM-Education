@@ -1,0 +1,175 @@
+﻿@using CRM.Entities
+
+@model Payment
+
+@{
+    ViewData["Title"] = "Payment Details";
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h2 class="mb-4">
+                        Payment Details
+                    </h2>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <strong>Payment ID</strong>
+                            <p class="text-muted">
+                                @Model.Id
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Student ID</strong>
+                            <p class="text-muted">
+                                @Model.StudentId
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Course ID</strong>
+                            <p class="text-muted">
+                                @Model.CourseId
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Payment Method</strong>
+                            <p class="text-muted">
+                                @Model.PaymentMethod
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Amount</strong>
+                            <p class="text-success fs-4 fw-bold">
+                                ৳@Model.Amount.ToString("N0")
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Discount</strong>
+
+                            @if (Model.DiscountAmount.HasValue)
+                            {
+                                <p class="text-muted">
+                                    ৳@Model.DiscountAmount.Value.ToString("N0")
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="text-muted">
+                                    No Discount
+                                </p>
+                            }
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Transaction ID</strong>
+                            <p class="text-muted">
+                                @Model.TransactionId
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Payment Date</strong>
+                            <p class="text-muted">
+                                @Model.PaymentDate.ToString("dd MMM yyyy")
+                            </p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <strong>Status</strong>
+
+                            @if (Model.Status == "Completed")
+                            {
+                                <p>
+                                    <span class="badge bg-success">
+                                        Completed
+                                    </span>
+                                </p>
+                            }
+                            else if (Model.Status == "Pending")
+                            {
+                                <p>
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+                                </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <span class="badge bg-danger">
+                                        @Model.Status
+                                    </span>
+                                </p>
+                            }
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Payment Result</strong>
+
+                            @if (Model.IsSuccessful)
+                            {
+                                <p>
+                                    <span class="badge bg-success">
+                                        Successful
+                                    </span>
+                                </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    <span class="badge bg-danger">
+                                        Unsuccessful
+                                    </span>
+                                </p>
+                            }
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <strong>Remarks</strong>
+
+                            <p class="text-muted">
+                                @(Model.Remarks ?? "No remarks")
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary">
+
+                        Back to Payments
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
