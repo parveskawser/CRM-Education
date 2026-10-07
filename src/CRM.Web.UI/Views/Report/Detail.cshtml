@@ -1,0 +1,80 @@
+﻿@using CRM.Entities
+
+@model ReportDefinition
+
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="mt-4">
+                <div class="d-flex gap-2 mb-3">
+                    <span class="badge bg-primary">@Model.Code</span>
+                    <span class="badge bg-secondary">Report Definition</span>
+                </div>
+
+                <h1 class="mb-3">@Model.Name</h1>
+
+                <p class="lead text-muted">@Model.Summary</p>
+
+                <hr />
+
+                <h4>About This Report</h4>
+                <p>@Model.Description</p>
+
+                <h4 class="mt-4">Key Features & Metrics Included</h4>
+                <ul>
+                    <li>Real-time automated data processing and aggregation</li>
+                    <li>Export support for PDF, Excel, and CSV formats</li>
+                    <li>Customizable parameter filtering by date and category</li>
+                    <li>Automated scheduling and administrative reporting options</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+                <div class="card-body p-4">
+                    <h4 class="mb-3">Report Information</h4>
+
+                    <div class="mb-3">
+                        <strong>Report ID:</strong>
+                        <span class="float-end">#@Model.Id</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Code:</strong>
+                        <span class="float-end">@Model.Code</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Status:</strong>
+                        <span class="float-end text-success fw-bold">Active</span>
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-4 text-center">
+                        <span class="fs-5 fw-bold text-success">
+                            Ready to Generate
+                        </span>
+                    </div>
+
+                    <a asp-controller="Report"
+                       asp-action="Detail"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-primary w-100 mb-2">
+                        Generate Report
+                    </a>
+
+                    <a asp-action="Index" class="btn btn-outline-secondary w-100">
+                        Back to Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
