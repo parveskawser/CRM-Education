@@ -10,6 +10,8 @@ namespace CRM.Web.UI.Controllers
         {
             return View();
         }
+
+        [Route(UrlRewrite.Account.Register)]
         public IActionResult Register()
         {
             return View();
