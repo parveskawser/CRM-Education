@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login </title>
+
+    <link rel="stylesheet" href="~/css/Account-Marufa/login.css" />
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Login to your  account</p>
+
+            <form method="post">
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email"
+                           name="email"
+                           placeholder="Enter your email"
+                           required />
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password"
+                           name="password"
+                           placeholder="Enter your password"
+                           required />
+                </div>
+
+                <div class="remember">
+                    <label>
+                        <input type="checkbox" />
+                        Remember me
+                    </label>
+
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="register">
+                Don't have an account?
+                <a href="/Registration">Create Account</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

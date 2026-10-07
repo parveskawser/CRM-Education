@@ -1,0 +1,119 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.login-box {
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #e5e8ef;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+    .login-box h1 {
+        text-align: center;
+        color: #1b2942;
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+.subtitle {
+    text-align: center;
+    color: #7c879b;
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+    .input-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #1b2942;
+        margin-bottom: 7px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #dfe4ec;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+    }
+
+        .input-group input:focus {
+            border-color: #635bdf;
+        }
+
+.remember {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+    .remember label {
+        color: #69758a;
+    }
+
+    .remember input {
+        margin-right: 5px;
+    }
+
+    .remember a {
+        color: #635bdf;
+        text-decoration: none;
+    }
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #635bdf;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .login-btn:hover {
+        background: #5149c9;
+    }
+
+.register {
+    text-align: center;
+    margin-top: 22px;
+    color: #7c879b;
+    font-size: 12px;
+}
+
+    .register a {
+        color: #635bdf;
+        font-weight: 600;
+        text-decoration: none;
+    }

@@ -1,0 +1,35 @@
+﻿
+body {
+    background-color: #fce4ec;
+    font-family: Arial, sans-serif;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+    .form-control:focus {
+        border-color: #e91e63;
+        outline: none;
+    }
+
+.register-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .register-button:hover {
+        background-color: #c2185b;
+    }
+
+

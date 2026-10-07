@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Registration";
+}
+
+<!-- External CSS -->
+<link rel="stylesheet" href="~/Account-Marufa/Registration.css" />
+
+<!-- Internal CSS -->
+<style>
+    .registration-container {
+        width: 400px;
+        margin: 50px auto;
+        padding: 25px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+        .registration-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+</style>
+
+<div class="registration-container">
+
+    <!-- Inline CSS -->
+    <h2 style="color: #e91e63; font-family: Arial;">
+        Create Account
+    </h2>
+
+    <form>
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   class="form-control"
+                   placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Enter your password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password"
+                   id="confirmPassword"
+                   name="confirmPassword"
+                   class="form-control"
+                   placeholder="Confirm your password">
+        </div>
+
+        <!-- External CSS class -->
+        <button type="submit" class="register-button">
+            Register
+        </button>
+
+    </form>
+
+</div>
+

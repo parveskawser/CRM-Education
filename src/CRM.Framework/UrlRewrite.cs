@@ -12,9 +12,10 @@ namespace CRM.Framework
             public const string CourseList = "admin/course-list";
             public const string CourseDetail = "admin/course-detail";
         }
-        public class Account
+        public class Marufa
         {
-            public const string Login = "login";
+            public const string Login = "Login";
+            public const string Registration = "Registration";
         }
     }
 }
