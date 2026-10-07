@@ -1,0 +1,93 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="~/css/AccountAbeer/style.css">
+
+    <!-- Internal CSS -->
+    <style>
+            .register-card {
+                width: 430px;
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            }
+
+            .register-card h1 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .register-card .subtitle {
+                text-align: center;
+                color: #777;
+                margin-bottom: 25px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-card">
+
+        <h1>Create Account</h1>
+
+        <p class="subtitle">
+            Create your account to get started
+        </p>
+
+        <form>
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password">
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password">
+            </div>
+
+            <label class="terms">
+                <input type="checkbox">
+                I agree to the Terms & Conditions
+            </label>
+
+            <!-- Inline CSS -->
+            <button type="submit" style="background: #6366f1;">
+                Create Account
+            </button>
+
+        </form>
+
+        <p class="bottom-text">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+    </div>
+
+</body>
+
+</html>
