@@ -1,0 +1,158 @@
+﻿
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Page */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Login Container */
+
+.login-container {
+    width: 100%;
+    padding: 20px;
+}
+
+
+/* Login Box */
+
+.login-box {
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Subtitle */
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+
+/* Input Group */
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+
+    /* Labels */
+
+    .input-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+    }
+
+
+    /* Input Fields */
+
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+    }
+
+
+        /* Input Focus */
+
+        .input-group input:focus {
+            border-color: #007bff;
+        }
+
+
+/* Remember & Forgot Password */
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+    .options input {
+        margin-right: 5px;
+    }
+
+    .options a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .options a:hover {
+            text-decoration: underline;
+        }
+
+
+/* Login Button */
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+
+/* Register Text */
+
+.register-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+    .register-text a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+
+/* Responsive */
+
+@media (max-width: 450px) {
+
+    .login-box {
+        padding: 25px 20px;
+    }
+}

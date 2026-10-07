@@ -1,0 +1,89 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+     Layout =null;
+
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="~/css/account parvez/login.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- Inline CSS used here -->
+        <div class="login-box" style="background-color: white;">
+
+            <h2 style="color: #333; text-align: center;">
+                Login
+            </h2>
+
+            <p class="subtitle">
+                Welcome back! Please login to your account.
+            </p>
+
+            <form>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <div class="options">
+
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+
+                    <a href="#">Forgot Password?</a>
+
+                </div>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="register-text">
+                Don't have an account?
+                <a href="#">Register</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
