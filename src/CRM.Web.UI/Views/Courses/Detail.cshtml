@@ -1,0 +1,117 @@
+﻿@using CRM.Entities
+
+@model Course
+
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-lg-8">
+             
+
+            <div class="mt-4">
+                <div class="d-flex gap-2 mb-3">
+                    <span class="badge bg-primary">@Model.Level</span>
+                    <span class="badge bg-secondary">@Model.Language</span>
+
+                    @if (Model.IsFeatured)
+                    {
+                        <span class="badge bg-warning text-dark">Featured Course</span>
+                    }
+                </div>
+
+                <h1 class="mb-3">@Model.Title</h1>
+
+                <p class="lead text-muted">@Model.ShortDescription</p>
+
+                <hr />
+
+                <h4>About This Course</h4>
+                <p>@Model.Description</p>
+
+                <h4 class="mt-4">What You Will Learn</h4>
+                <ul>
+                    <li>Practical project-based learning</li>
+                    <li>Industry-standard development process</li>
+                    <li>Course materials and recorded lessons</li>
+                    <li>Certificate after successful completion</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+                <div class="card-body p-4">
+                    <h4 class="mb-3">Course Information</h4>
+
+                    <div class="mb-3">
+                        <strong>Level:</strong>
+                        <span class="float-end">@Model.Level</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Language:</strong>
+                        <span class="float-end">@Model.Language</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Total Lessons:</strong>
+                        <span class="float-end">@Model.TotalLessons</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Duration:</strong>
+                        <span class="float-end">
+                            @(Model.DurationInMinutes / 60) Hours
+                            @(Model.DurationInMinutes % 60) Minutes
+                        </span>
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-4">
+                        @if (Model.DiscountPrice.HasValue)
+                        {
+                            <span class="fs-2 fw-bold text-success">
+                                ৳@Model.DiscountPrice.Value.ToString("N0")
+                            </span>
+
+                            <span class="text-muted text-decoration-line-through ms-2">
+                                ৳@Model.Price.ToString("N0")
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="fs-2 fw-bold text-success">
+                                ৳@Model.Price.ToString("N0")
+                            </span>
+                        }
+                    </div>
+
+                    @if (Model.IsPublished)
+                    {
+                        <a asp-controller="Enrollment"
+                           asp-action="Create"
+                           asp-route-courseId="@Model.Id"
+                           class="btn btn-primary w-100 mb-2">
+                            Enroll Now
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary w-100 mb-2" disabled>
+                            Coming Soon
+                        </button>
+                    }
+
+                    <a asp-action="Index" class="btn btn-outline-secondary w-100">
+                        Back to Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
