@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Learning Management System - Sign In</title>
+
+    <link rel="stylesheet"
+          href="~/css/accountjarin/login.css" />
+</head>
+
+<body class="login-page">
+
+    <main class="login-card">
+
+        <div class="brand">
+            Learning Management System
+        </div>
+
+        <h1>Welcome Back</h1>
+
+        <p class="subtitle">
+            Sign in to access your account and continue where you left off.
+        </p>
+
+        <form method="post">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input type="email"
+                       id="email"
+                       name="email"
+                       placeholder="you@example.com"
+                       autocomplete="email"
+                       required />
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Enter your password"
+                       autocomplete="current-password"
+                       required />
+
+            </div>
+
+            <div class="login-options">
+
+                <label class="remember-me">
+
+                    <input type="checkbox"
+                           name="remember" />
+
+                    <span>Remember me</span>
+
+                </label>
+
+                <a href="#">
+                    Forgot password?
+                </a>
+
+            </div>
+
+            <button type="submit"
+                    class="login-button">
+                Sign In
+            </button>
+
+        </form>
+
+        <p class="signup">
+            Don't have an account?
+            <a href="\Register">
+                Create one
+            </a>
+        </p>
+
+    </main>
+
+</body>
+
+</html>

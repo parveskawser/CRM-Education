@@ -1,0 +1,212 @@
+﻿/* ==============================
+   BASIC RESET
+   ============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+
+/* ==============================
+   REGISTER PAGE
+   ============================== */
+
+.register-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient( 135deg, #0f4c5c 0%, #0f766e 50%, #14b8a6 100% );
+}
+
+
+/* ==============================
+   REGISTER CARD
+   ============================== */
+
+.register-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 42px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ==============================
+   BRAND
+   ============================== */
+
+.brand {
+    margin-bottom: 25px;
+    color: #0f766e;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+
+/* ==============================
+   HEADING
+   ============================== */
+
+.register-card h1 {
+    margin: 0 0 10px;
+    color: #172033;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* ==============================
+   SUBTITLE
+   ============================== */
+
+.subtitle {
+    margin: 0 0 28px;
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   FORM GROUP
+   ============================== */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+
+    /* ==============================
+   LABEL
+   ============================== */
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+
+    /* ==============================
+   INPUT
+   ============================== */
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 14px 15px;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        outline: none;
+        background: #ffffff;
+        color: #172033;
+        font-size: 15px;
+        transition: all 0.2s ease;
+    }
+
+
+        /* ==============================
+   INPUT FOCUS
+   ============================== */
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus {
+            border-color: #0f766e;
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        }
+
+
+/* ==============================
+   REGISTER BUTTON
+   ============================== */
+
+.register-button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient( 135deg, #0f766e, #0d9488 );
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+
+    /* ==============================
+   BUTTON HOVER
+   ============================== */
+
+    .register-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(15, 118, 110, 0.25);
+    }
+
+
+/* ==============================
+   LOGIN LINK
+   ============================== */
+
+.login-link {
+    margin: 24px 0 0;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+    .login-link a {
+        color: #0f766e;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 480px) {
+
+    .register-page {
+        padding: 16px;
+    }
+
+    .register-card {
+        padding: 30px 24px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .register-card h1 {
+        font-size: 26px;
+    }
+}

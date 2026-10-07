@@ -9,8 +9,7 @@ body {
     place-items: center;
     padding: 24px;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1d4ed8);
-    color: #172033;
+    background: #3b61b4;
 }
 
 .login-card {
@@ -36,7 +35,7 @@ body {
 h1 {
     margin: 22px 0 8px;
     font-size: 28px;
-    color: #ffb300;
+    color: deepskyblue;
 }
 
 .subtitle {

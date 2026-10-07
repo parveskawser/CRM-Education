@@ -1,0 +1,146 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Learning Management System - Register</title>
+
+    <link rel="stylesheet"
+          href="~/css/accountjarin/registercss.css" />
+
+</head>
+
+<body class="register-page">
+
+    <main class="register-card">
+
+        <!-- Brand -->
+
+        <div class="brand">
+            Learning Management System
+        </div>
+
+
+        <!-- Heading -->
+
+        <h1>Create Account</h1>
+
+        <p class="subtitle">
+            Create your account to get started with the learning platform.
+        </p>
+
+
+        <!-- Register Form -->
+
+        <form method="post">
+
+            <!-- Full Name -->
+
+            <div class="form-group">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input type="text"
+                       id="fullName"
+                       name="fullName"
+                       placeholder="Enter your full name"
+                       autocomplete="name"
+                       required />
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input type="email"
+                       id="email"
+                       name="email"
+                       placeholder="you@example.com"
+                       autocomplete="email"
+                       required />
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Create a password"
+                       autocomplete="new-password"
+                       required />
+
+            </div>
+
+
+            <!-- Confirm Password -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input type="password"
+                       id="confirmPassword"
+                       name="confirmPassword"
+                       placeholder="Confirm your password"
+                       autocomplete="new-password"
+                       required />
+
+            </div>
+
+
+            <!-- Register Button -->
+
+            <button type="submit"
+                    class="register-button">
+                Create Account
+            </button>
+
+        </form>
+
+
+        <!-- Login Link -->
+
+        <p class="login-link">
+
+            Already have an account?
+
+            <a href="/Login">
+                Sign In
+            </a>
+
+        </p>
+
+    </main>
+
+</body>
+
+</html>

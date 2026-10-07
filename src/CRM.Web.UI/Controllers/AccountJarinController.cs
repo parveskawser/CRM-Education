@@ -1,20 +1,19 @@
-﻿using CRM.Framework;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Web.UI.Controllers
 {
-    public class AccountController : Controller
+    public class AccountJarinController : Controller
     {
-        [Route("Login")]
+ 
         public IActionResult Login()
         {
             return View();
         }
-        [Route("Register")]
+
+        
         public IActionResult Register()
         {
             return View();
         }
-
     }
 }
