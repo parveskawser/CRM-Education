@@ -1171,12 +1171,17 @@
                 document.body.classList.toggle("menu");
             }
             function go(p) {
-                page = p;
-                query = "";
-                filter = "All";
-                document.body.classList.remove("menu");
-                render();
-            }
+    if (p === "Students") {
+        window.location.href = "/Student/Index";
+        return;
+    }
+
+    page = p;
+    query = "";
+    filter = "All";
+    document.body.classList.remove("menu");
+    render();
+}
             function closeModal() {
                 document.getElementById("modal").close();
             }

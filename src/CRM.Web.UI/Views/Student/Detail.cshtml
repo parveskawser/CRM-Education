@@ -1,0 +1,94 @@
+@using CRM.Entities
+@model Student
+
+@{
+    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Student Details</h2>
+            <p class="text-muted mb-0">View complete student information</p>
+        </div>
+
+        <a asp-controller="Student" asp-action="Index" class="btn btn-secondary">
+            Back to Students
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+            <div class="mb-4">
+                <h3>@Model.FullName</h3>
+
+                @if (Model.Status == "Active")
+                {
+                    <span class="badge bg-success">Active</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">@Model.Status</span>
+                }
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <strong>Full Name</strong>
+                    <p>@Model.FullName</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Email</strong>
+                    <p>@Model.Email</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Phone</strong>
+                    <p>@Model.Phone</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Gender</strong>
+                    <p>@Model.Gender</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Date of Birth</strong>
+                    <p>@Model.DateOfBirth.ToString("dd MMM yyyy")</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Address</strong>
+                    <p>@Model.Address</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Course ID</strong>
+                    <p>@Model.CourseId</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Batch ID</strong>
+                    <p>@Model.BatchId</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Enrollment Date</strong>
+                    <p>@Model.EnrollmentDate.ToString("dd MMM yyyy")</p>
+                </div>
+
+                <div class="col-md-6">
+                    <strong>Status</strong>
+                    <p>@Model.Status</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
