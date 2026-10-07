@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = "Registration";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+    }
+
+    .register-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+
+    .register-box {
+        width: 420px;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .register-box h2 {
+        text-align: center;
+        margin-bottom: 8px;
+        color: #222;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+    }
+
+    .register-btn {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 6px;
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .register-btn:hover {
+        background: #0056b3;
+    }
+
+    .login-text {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .login-text a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .login-text a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="register-container">
+
+    <div class="register-box">
+
+        <h2 style="color: darkblue;">Create Account</h2>
+
+        <p class="subtitle">
+            Register your account to get started
+        </p>
+
+        <form>
+
+            <div class="form-group">
+                <label>Full Name</label>
+
+                <input type="text"
+                       placeholder="Enter your full name" />
+            </div>
+
+        
+            <div class="form-group">
+                <label>Email Address</label>
+
+                <input type="email"
+                       placeholder="Enter your email" />
+            </div>
+
+           
+            <div class="form-group">
+                <label>Username</label>
+
+                <input type="text"
+                       placeholder="Choose a username" />
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+
+                <input type="password"
+                       placeholder="Enter your password" />
+            </div>
+
+           
+            <div class="form-group">
+                <label>Confirm Password</label>
+
+                <input type="password"
+                       placeholder="Confirm your password" />
+            </div>
+
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+
+        </form>
+
+        <p class="login-text">
+            Already have an account?
+            <a href="/Account/Login">Login</a>
+        </p>
+
+    </div>
+
+</div>
