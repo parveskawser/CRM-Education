@@ -1,0 +1,202 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background:#b9cff9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
+}
+
+/* Main Card */
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 42px 40px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo */
+
+
+.piistech-logo {
+    display: block;
+    width: 145px;
+    height: auto;
+    margin: 0 auto 30px auto;
+}
+
+/* Heading */
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111827;
+}
+
+    h1 span {
+        display: block;
+    }
+
+/* Subtitle */
+
+.subtitle {
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b7280;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    .form-group input {
+        width: 100%;
+        height: 46px;
+        padding: 0 14px;
+        background: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #111827;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+/* Remember / Forgot Password */
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 24px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4b5563;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+    .remember input {
+        width: 15px;
+        height: 15px;
+        accent-color: #2563eb;
+        cursor: pointer;
+    }
+
+.options a {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .options a:hover {
+        text-decoration: underline;
+    }
+
+/* Sign In Button */
+
+button[type="submit"] {
+    width: 100%;
+    height: 46px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+    button[type="submit"]:hover {
+        background: #1d4ed8;
+    }
+
+    button[type="submit"]:active {
+        transform: translateY(1px);
+    }
+
+/* Sign Up */
+
+.signup {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+    .signup a {
+        color: #2563eb;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+/* Responsive */
+
+@media (max-width: 520px) {
+
+    body {
+        padding: 16px;
+    }
+
+    .login-card {
+        padding: 32px 24px;
+        border-radius: 12px;
+    }
+
+    .basis-logo {
+        width: 125px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

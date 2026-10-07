@@ -10,4 +10,8 @@
     <ProjectReference Include="..\CRM.Framework\CRM.Framework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

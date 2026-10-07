@@ -1,0 +1,171 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: #f6f7f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
+}
+
+/* Registration Card */
+
+.register-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo */
+
+.piistech-logo {
+    display: block;
+    width: 145px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Heading */
+
+.register-card h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111827;
+}
+
+/* Subtitle */
+
+.subtitle {
+    margin-bottom: 28px;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #374151;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .form-group input {
+        width: 100%;
+        height: 46px;
+        padding: 0 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #111827;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-group input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+/* Password Row */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* Button */
+
+button[type="submit"] {
+    width: 100%;
+    height: 46px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+    button[type="submit"]:hover {
+        background: #1d4ed8;
+    }
+
+    button[type="submit"]:active {
+        transform: translateY(1px);
+    }
+
+/* Login Link */
+
+.login-link {
+    margin-top: 22px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+    .login-link a {
+        color: #2563eb;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 16px;
+    }
+
+    .register-card {
+        padding: 30px 22px;
+        border-radius: 12px;
+    }
+
+        .register-card h1 {
+            font-size: 24px;
+        }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

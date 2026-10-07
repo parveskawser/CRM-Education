@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PIISTECH Course Enrollment</title>
+
+    <link rel="stylesheet" href="~/css/accountriyan/login.css" />
+</head>
+
+<body>
+
+    <main class="login-card">
+
+
+        <img src="/images/logo-t.png"
+             alt="piistech Logo"
+             class="piistech-logo" />
+
+       
+        <h1>
+            Piistech Course Enrollment
+        </h1>
+
+       
+
+        <form method="post">
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+
+                <input id="email"
+                       name="email"
+                       type="email"
+                       placeholder="you@example.com"
+                       autocomplete="email"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input id="password"
+                       name="password"
+                       type="password"
+                       placeholder="Enter your password"
+                       autocomplete="current-password"
+                       required />
+            </div>
+
+            <div class="options">
+
+                <label class="remember">
+                    <input type="checkbox" name="remember" />
+                    <span>Remember me</span>
+                </label>
+
+                <a href="#">Forgot password?</a>
+
+            </div>
+
+            <button type="submit">
+                Sign In
+            </button>
+
+        </form>
+
+        <p class="signup">
+            Don’t have an account?
+            <a href="\Register">Create one</a>
+        </p>
+
+    </main>
+
+</body>
+</html>

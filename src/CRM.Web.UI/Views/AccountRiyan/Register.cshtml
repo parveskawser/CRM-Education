@@ -1,0 +1,180 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Create Account - PIISTECH</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="~/css/accountriyan/register.css" />
+
+    <!-- Internal CSS -->
+    <style>
+            .registration-note {
+                font-size: 12px;
+                color: #6b7280;
+                margin-top: -8px;
+                margin-bottom: 18px;
+            }
+
+            .terms-label {
+                display: flex;
+                align-items: flex-start;
+                gap: 8px;
+                font-size: 13px;
+                color: #4b5563;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+
+            .terms-label input {
+                margin-top: 3px;
+                accent-color: #2563eb;
+            }
+
+            .terms-label a {
+                color: #2563eb;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            .terms-label a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+
+<body>
+
+    <main class="register-card">
+
+        <!-- Logo -->
+        <img src="/images/logo-t.png"
+             alt="Piistech Logo"
+             class="piistech-logo"
+             style="margin-bottom: 24px;" />
+
+        <h1>Create your account</h1>
+
+        <p class="subtitle">
+            Register your account to access PIISTECH Course Enrollment.
+        </p>
+
+        <form method="post">
+
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+
+                <input type="text"
+                       id="fullName"
+                       name="fullName"
+                       placeholder="Enter your full name"
+                       autocomplete="name"
+                       required />
+            </div>
+
+            <!-- Student ID -->
+            <div class="form-group">
+                <label for="studentId">Student ID</label>
+
+                <input type="text"
+                       id="studentId"
+                       name="studentId"
+                       placeholder="Enter your student ID"
+                       required />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+
+                <input type="email"
+                       id="email"
+                       name="email"
+                       placeholder="you@example.com"
+                       autocomplete="email"
+                       required />
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+
+                <input type="tel"
+                       id="phone"
+                       name="phone"
+                       placeholder="01XXXXXXXXX"
+                       autocomplete="tel"
+                       required />
+            </div>
+
+            <!-- Password -->
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Create password"
+                           autocomplete="new-password"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <input type="password"
+                           id="confirmPassword"
+                           name="confirmPassword"
+                           placeholder="Confirm password"
+                           autocomplete="new-password"
+                           required />
+                </div>
+
+            </div>
+
+            <p class="registration-note">
+                Use at least 8 characters for your password.
+            </p>
+
+            <!-- Terms -->
+            <label class="terms-label">
+
+                <input type="checkbox"
+                       name="terms"
+                       required />
+
+                <span>
+                    I agree to the
+                    <a href="#" target="_blank">Terms and Conditions</a>.
+                </span>
+
+            </label>
+
+            <!-- Submit -->
+            <button type="submit"
+                    style="letter-spacing: 0.1px;">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="/Login">Sign in</a>
+        </p>
+
+    </main>
+
+</body>
+</html>
