@@ -1,0 +1,192 @@
+/* =========================
+   GENERAL
+   ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Arial, sans-serif;
+
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* =========================
+   INPUT
+   ========================= */
+
+.form-group input {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* =========================
+   OPTIONS
+   ========================= */
+
+.options {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+
+  font-size: 14px;
+}
+
+.remember {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #555;
+}
+
+.remember input {
+  width: 16px;
+  height: 16px;
+}
+
+/* =========================
+   BUTTON
+   ========================= */
+
+button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #4f46e5 !important;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+a {
+  color: #6366f1;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   BOTTOM TEXT
+   ========================= */
+
+.bottom-text {
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+/* =========================
+   TERMS
+   ========================= */
+
+.terms {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 20px;
+
+  color: #555;
+
+  font-size: 14px;
+}
+
+.terms input {
+  width: 16px;
+  height: 16px;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 500px) {
+  .login-card,
+  .register-card {
+    width: 90%;
+    padding: 30px 25px;
+  }
+}
