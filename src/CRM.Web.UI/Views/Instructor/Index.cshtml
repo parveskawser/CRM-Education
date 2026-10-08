@@ -1,7 +1,94 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
+@using CRM.Entities
+
+@model List<Instructor>
+
 @{
-    Layout = "_PrivateLayout";
+    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
 }
-<div>Instructor List</div>
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Our Instructors</h2>
+            <p class="text-muted mb-0">Meet our experienced instructors</p>
+        </div>
+
+        <span class="badge bg-primary fs-6">
+            Total Instructors: @Model.Count
+        </span>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var instructor in Model)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+
+                    <div class="card-body d-flex flex-column">
+
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-info text-dark">
+                                @instructor.Expertise
+                            </span>
+
+                            @if (instructor.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Inactive</span>
+                            }
+                        </div>
+
+                        <h5 class="card-title">
+                            @instructor.Name
+                        </h5>
+
+                        <p class="card-text text-muted">
+                            @instructor.Bio
+                        </p>
+
+                        <div class="small text-muted mb-3">
+                            <div>Email: @instructor.Email</div>
+                            <div>Phone: @instructor.Phone</div>
+                            <div>Qualification: @instructor.Qualification</div>
+                            <div>Experience: @instructor.ExperienceYears years</div>
+                        </div>
+
+                        <div class="mt-auto d-flex justify-content-end align-items-center">
+
+                            @if (instructor.IsActive)
+                            {
+                                <a asp-controller="Instructor"
+                                   asp-action="Detail"
+                                   asp-route-id="@instructor.Id"
+                                   class="btn btn-primary btn-sm">
+                                    View Instructor
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary btn-sm" disabled>
+                                    Inactive
+                                </button>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            No instructors are available right now.
+        </div>
+    }
+</div>
+
+<h1>Page no: @ViewBag.pageno</h1>
