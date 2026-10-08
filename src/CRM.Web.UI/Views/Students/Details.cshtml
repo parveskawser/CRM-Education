@@ -1,0 +1,107 @@
+﻿@using CRM.Entities
+
+@model Students
+
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+
+        ```
+        <div class="col-lg-8">
+
+            <div class="mt-4">
+
+                <div class="d-flex gap-2 mb-3">
+                    <span class="badge bg-primary">@Model.Department</span>
+                    <span class="badge bg-secondary">Student</span>
+                </div>
+
+                <h1 class="mb-3">@Model.Name</h1>
+
+                <p class="lead text-muted">
+                    Student information and academic details
+                </p>
+
+                <hr />
+
+                <h4>About This Student</h4>
+
+                <p>
+                    This page contains the personal and academic information
+                    of <strong>@Model.Name</strong>.
+                </p>
+
+                <h4 class="mt-4">Student Information</h4>
+
+                <ul>
+                    <li>Student ID: @Model.Id</li>
+                    <li>Age: @Model.Age</li>
+                    <li>Department: @Model.Department</li>
+                    <li>Email: @Model.Email</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+
+                <div class="card-body p-4">
+
+                    <h4 class="mb-3">Student Information</h4>
+
+                    <div class="mb-3">
+                        <strong>Student ID:</strong>
+                        <span class="float-end">@Model.Id</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Name:</strong>
+                        <span class="float-end">@Model.Name</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Age:</strong>
+                        <span class="float-end">@Model.Age</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Department:</strong>
+                        <span class="float-end">@Model.Department</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Email:</strong>
+                        <span class="float-end">@Model.Email</span>
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-4">
+                        <span class="fs-5 fw-bold text-primary">
+                            @Model.Department
+                        </span>
+                    </div>
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary w-100">
+                        Back to Students
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    ```
+
+</div>
