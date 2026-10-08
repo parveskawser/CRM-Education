@@ -57,7 +57,7 @@
                             <div>Experience: @instructor.ExperienceYears years</div>
                         </div>
 
-                        <div class="mt-auto d-flex justify-content-end align-items-center">
+                        <div class="mt-auto d-flex justify-content-end align-items-center gap-2">
 
                             @if (instructor.IsActive)
                             {
@@ -66,6 +66,13 @@
                                    asp-route-id="@instructor.Id"
                                    class="btn btn-primary btn-sm">
                                     View Instructor
+                                </a>
+
+                                <a asp-controller="Instructor"
+                                   asp-action="InstructorCourse"
+                                   asp-route-id="@instructor.Id"
+                                   class="btn btn-success btn-sm">
+                                    View Courses
                                 </a>
                             }
                             else

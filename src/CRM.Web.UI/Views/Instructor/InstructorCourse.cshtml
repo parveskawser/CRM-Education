@@ -1,0 +1,25 @@
+﻿@model CRM.Entities.InstructorCourse
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div> 
+    <h1>Instructor Detail</h1> 
+    <p>Name: @Model.Instructor.Name</p>
+    <p>Email: @Model.Instructor.Email</p>
+    <p>Phone: @Model.Instructor.Phone</p> 
+    <p>Bio: @Model.Instructor.Bio</p> 
+    <p>Expertise: @Model.Instructor.Expertise</p> 
+    <p>Qualification: @Model.Instructor.Qualification</p>
+    <p>Experience: @Model.Instructor.ExperienceYears years</p> 
+    <p>Active: @Model.Instructor.IsActive</p> 
+</div>
+<div>
+    <h1>Course List</h1> 
+    @foreach (var item in Model.CourseList)
+    {
+<p>Course Name: @item.Title</p>
+}
+</div>

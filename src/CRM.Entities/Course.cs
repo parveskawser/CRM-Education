@@ -31,8 +31,14 @@ namespace CRM.Entities
 
     public class StudentCourse
     {
-        public Students Student { get; set;  }
-        public List<Course> CourseList { get; set;  }
+        public Students Student { get; set; }
+        public List<Course> CourseList { get; set; }
 
     }
+    public class InstructorCourse
+    {
+        public Instructor Instructor { get; set; }
+        public List<Course> CourseList { get; set; }
+    }
 }
+
