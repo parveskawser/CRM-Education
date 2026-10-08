@@ -18,4 +18,10 @@ namespace CRM.Entities
 
         public string? Remarks { get; set; }
     }
+
+    public class StudentAttendance
+    {
+        public  Students Student { get; set; }
+        public  List<Attendance> AttendanceList { get; set; }
+    }
 }

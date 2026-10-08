@@ -23,10 +23,34 @@ namespace CRM.Web.UI.Controllers
 
             return View(attendance);
         }
+        public IActionResult StudentAttendance()
+        {
+            StudentAttendance attendance = new StudentAttendance();
+
+            attendance.Student = Student;
+            attendance.AttendanceList = Attendances; 
+
+            return View(attendance);
+        
+        }
+
 
 
 
         #region DataFeeder
+
+
+
+
+        private static readonly Students Student = new Students
+        {
+            Id = 101,
+            Name = "Alice Johnson",
+            Age = 20,
+            Department = "Computer Science",
+            Email = "alice@example.com"
+        };
+
 
         private static readonly List<Attendance> Attendances = new()
         {
@@ -91,6 +115,7 @@ namespace CRM.Web.UI.Controllers
             }
         };
 
+        
         #endregion
     }
 

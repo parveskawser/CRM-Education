@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+<div>
+    <h1>Student Detail</h1>
+
+    <p>Name: @Model.Student.Name</p>
+    <p>Department: @Model.Student.Department</p>
+    <p>Email: @Model.Student.Email</p>
+</div>
+
+<div>
+    <h1>Attendance List</h1>
+
+    @foreach (var item in Model.AttendanceList)
+    {
+        <div>
+            <p>Date: @item.AttendanceDate.ToShortDateString()</p>
+            <p>
+                Status:
+                @(item.IsPresent ? "Present" : "Absent")
+            </p>
+            <p>Remarks: @item.Remarks</p>
+        </div>
+    }
+</div>
