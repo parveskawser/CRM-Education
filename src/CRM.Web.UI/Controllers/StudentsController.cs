@@ -39,7 +39,74 @@ namespace CRM.Web.UI.Controllers
 
             return View(students);
         }
+        public IActionResult StudentAttendance()
+        {
+            List<StudentAttendance> studentAttendances = new List<StudentAttendance>
+    {
+        new StudentAttendance
+        {
+            StudentId = 1,
+            StudentName = "Tasmim",
+            Department = "CSE",
+            AttendanceDate = new DateTime(2026, 10, 1),
+            IsPresent = true,
+            Remarks = "Attended full class"
+        },
 
+        new StudentAttendance
+        {
+            StudentId = 2,
+            StudentName = "Marufa",
+            Department = "CSE",
+            AttendanceDate = new DateTime(2026, 10, 1),
+            IsPresent = true,
+            Remarks = "Attended full class"
+        },
+
+        new StudentAttendance
+        {
+            StudentId = 3,
+            StudentName = "Nusrat",
+            Department = "BBA",
+            AttendanceDate = new DateTime(2026, 10, 1),
+            IsPresent = false,
+            Remarks = "Absent"
+        },
+
+        new StudentAttendance
+        {
+            StudentId = 1,
+            StudentName = "Tasmim",
+            Department = "CSE",
+            AttendanceDate = new DateTime(2026, 10, 2),
+            IsPresent = true,
+            Remarks = "Present"
+        },
+
+        new StudentAttendance
+        {
+            StudentId = 2,
+            StudentName = "Marufa",
+            Department = "CSE",
+            AttendanceDate = new DateTime(2026, 10, 2),
+            IsPresent = false,
+            Remarks = "Not attended"
+        },
+
+        new StudentAttendance
+        {
+            StudentId = 3,
+            StudentName = "Nusrat",
+            Department = "BBA",
+            AttendanceDate = new DateTime(2026, 10, 2),
+            IsPresent = true,
+            Remarks = "Present"
+        }
+    };
+
+            return View(studentAttendances);
+        }
+        
         public IActionResult Details(int id)
         {
             List<Students> students = new List<Students>

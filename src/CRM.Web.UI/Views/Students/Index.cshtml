@@ -1,6 +1,4 @@
-﻿@using CRM.Entities
-
-@model List<Students>
+﻿@model List<Students>
 
 @{
     Layout = "~/Views/Shared/_PrivateLayout.cshtml";
@@ -94,6 +92,12 @@
                                class="btn btn-primary btn-sm">
                                 View Student
                             </a>
+                            <a asp-controller="Students"
+                               asp-action="StudentAttendance"
+                               asp-route-id="@student.Id"
+                               class="btn btn-success btn-sm">
+                                View Attendance
+                            </a>
 
                         </div>
 
@@ -118,3 +122,5 @@
 </div>
 
 <h1>Page no: @ViewBag.pageno</h1>
+@using CRM.Entities
+

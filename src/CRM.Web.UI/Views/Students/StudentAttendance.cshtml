@@ -1,0 +1,112 @@
+﻿
+@model List<CRM.Entities.StudentAttendance>
+
+@{
+    ViewData["Title"] = "Student Attendance";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Student Attendance</title>
+
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+                margin: 30px;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: white;
+            }
+
+            th {
+                background-color: #333;
+                color: white;
+                padding: 12px;
+                text-align: center;
+            }
+
+            td {
+                padding: 10px;
+                border: 1px solid #ddd;
+                text-align: center;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .present {
+                color: green;
+                font-weight: bold;
+            }
+
+            .absent {
+                color: red;
+                font-weight: bold;
+            }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Attendance</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Department</th>
+                <th>Attendance Date</th>
+                <th>Attendance</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var attendance in Model)
+            {
+                <tr>
+                    <td>@attendance.StudentId</td>
+
+                    <td>@attendance.StudentName</td>
+
+                    <td>@attendance.Department</td>
+
+                    <td>
+                        @attendance.AttendanceDate.ToString("dd-MM-yyyy")
+                    </td>
+
+                    <td>
+                        @if (attendance.IsPresent)
+                        {
+                            <span class="present">Present</span>
+                        }
+                        else
+                        {
+                            <span class="absent">Absent</span>
+                        }
+                    </td>
+
+                    <td>@attendance.Remarks</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+</html>
+
