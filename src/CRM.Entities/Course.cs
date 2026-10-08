@@ -28,4 +28,11 @@ namespace CRM.Entities
         public bool IsFeatured { get; set; }
 
     }
+
+    public class StudentCourse
+    {
+        public Students Student { get; set; }
+        public List<Course> CourseList { get; set; }
+
+    }
 }
