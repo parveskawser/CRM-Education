@@ -1,0 +1,68 @@
+﻿
+
+@{
+    Layout = "_PrivateLayout";
+}
+
+<h2>Student Payment</h2>
+
+<hr />
+
+<h4>Student Information</h4>
+
+<p>
+    <strong>Name:</strong>
+    @Model.Student.Name
+</p>
+
+<p>
+    <strong>Age:</strong>
+    @Model.Student.Age
+</p>
+
+<p>
+    <strong>Department:</strong>
+    @Model.Student.Department
+</p>
+
+<p>
+    <strong>Email:</strong>
+    @Model.Student.Email
+</p>
+
+<hr />
+
+<h4>Payment Information</h4>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Payment ID</th>
+            <th>Amount</th>
+            <th>Discount</th>
+            <th>Payment Method</th>
+            <th>Transaction ID</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var payment in Model.PaymentList)
+        {
+            <tr>
+                <td>@payment.Id</td>
+                <td>@payment.Amount</td>
+                <td>@payment.DiscountAmount</td>
+                <td>@payment.PaymentMethod</td>
+                <td>@payment.TransactionId</td>
+                <td>@payment.PaymentDate.ToString("dd MMM yyyy")</td>
+                <td>@payment.Status</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

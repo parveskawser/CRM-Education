@@ -28,4 +28,12 @@ namespace CRM.Entities
 
         public bool IsSuccessful { get; set; }
     }
+    public class PaymentDetails
+    {
+        public Payment Payment { get; set; }
+
+        public Students Student { get; set; }
+
+       
+    }
 }

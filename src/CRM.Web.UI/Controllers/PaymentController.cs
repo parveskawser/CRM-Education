@@ -1,4 +1,5 @@
-﻿using CRM.Entities;
+﻿using System.Collections.Generic;
+using CRM.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Web.UI.Controllers
@@ -29,7 +30,26 @@ namespace CRM.Web.UI.Controllers
 
             return View(payment);
         }
+       
+        public IActionResult StudentPayment()
+        {
 
+            StudentPayment payment = new StudentPayment();
+            // assign the existing Payments list (or filter by student if intended)
+            payment.PaymentList = Payments;
+            payment.Student = Student;
+
+            return View(payment);
+        }
+
+        private static readonly Students Student = new Students
+        {
+            Id = 2,
+            Name = "Marufa",
+            Age = 22,
+            Department = "CSE",
+            Email = "marufa@gmail.com"
+        };
 
         #region datafeeder
 

@@ -1,5 +1,4 @@
-﻿
-using CRM.Entities;
+﻿using CRM.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Web.UI.Controllers
@@ -67,6 +66,7 @@ namespace CRM.Web.UI.Controllers
             Department = "CSE",
             Email = "marufa@gmail.com"
         };
+
         private static readonly List<Course> Courses = new()
         {
         new Course
@@ -85,7 +85,8 @@ namespace CRM.Web.UI.Controllers
             DurationInMinutes = 720,
             IsPublished = true,
             IsFeatured = true
-        },new Course
+        },
+            new Course
                 {
                     Id = 2,
                     Title = "C# Programming Fundamentals",
