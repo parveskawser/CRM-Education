@@ -1,5 +1,4 @@
-﻿
-using CRM.Entities;
+﻿using CRM.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Web.UI.Controllers
@@ -16,7 +15,7 @@ namespace CRM.Web.UI.Controllers
             //    pageno = page;
 
             pageno = (page <= pageno) ? 1 : page;
-           
+
 
             ViewBag.pageno = pageno;
 
@@ -31,7 +30,7 @@ namespace CRM.Web.UI.Controllers
             //{
             //    Title = "English"
             //});
-            var courses = Courses; 
+            var courses = Courses;
 
             return View(courses);
         }
@@ -47,7 +46,7 @@ namespace CRM.Web.UI.Controllers
 
             return View(course);
         }
-         
+
         public IActionResult StudentCourse()
         {
 
