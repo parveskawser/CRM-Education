@@ -1,0 +1,96 @@
+﻿@using CRM.Entities
+
+@model ReportDefinition
+
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="mt-4">
+                <div class="d-flex gap-2 mb-3">
+                    <span class="badge bg-primary">@Model.ReportType</span>
+
+                    @if (Model.IsActive)
+                    {
+                        <span class="badge bg-success">Active Report</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactive</span>
+                    }
+                </div>
+
+                <h1 class="mb-3">@Model.Name</h1>
+
+                <hr />
+
+                <h4>About This Report</h4>
+                <p>@Model.Description</p>
+
+                <h4 class="mt-4">Key Features</h4>
+                <ul>
+                    <li>Automated data aggregation</li>
+                    <li>Export support for PDF, Excel, and CSV formats</li>
+                    <li>Customizable date filtering options</li>
+                    <li>Role-based access control</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+                <div class="card-body p-4">
+                    <h4 class="mb-3">Report Details</h4>
+
+                    <div class="mb-3">
+                        <strong>Report ID:</strong>
+                        <span class="float-end">#@Model.Id</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Type:</strong>
+                        <span class="float-end">@Model.ReportType</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Status:</strong>
+                        <span class="float-end @(Model.IsActive ? "text-success" : "text-danger") fw-bold">
+                            @(Model.IsActive ? "Active" : "Inactive")
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Created Date:</strong>
+                        <span class="float-end">@Model.CreatedDate.ToString("dd MMM yyyy")</span>
+                    </div>
+
+                    <hr />
+
+                    @if (Model.IsActive)
+                    {
+                        <a asp-controller="Report"
+                           asp-action="Generate"
+                           asp-route-id="@Model.Id"
+                           class="btn btn-primary w-100 mb-2">
+                            Generate Report
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary w-100 mb-2" disabled>
+                            Report Disabled
+                        </button>
+                    }
+
+                    <a asp-action="Index" class="btn btn-outline-secondary w-100">
+                        Back to Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

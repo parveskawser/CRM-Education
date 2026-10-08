@@ -1,9 +1,74 @@
-﻿
-@* @{
-    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
-}
- *@
+﻿@using CRM.Entities
+
+@model List<ReportDefinition>
 
 @{
+    ViewData["Title"] = "Reports";
     Layout = "_PrivateLayout";
 }
+
+<div class="container py-5">
+
+    <h1 class="mb-4">Reports</h1>
+
+    <div class="row g-4">
+
+        @foreach (var report in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card shadow-sm border-0 h-100">
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex justify-content-between mb-3">
+
+                            <span class="badge bg-primary">
+                                @report.ReportType
+                            </span>
+
+                            @if (report.IsActive)
+                            {
+                                <span class="badge bg-success">
+                                    Active
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">
+                                    Inactive
+                                </span>
+                            }
+
+                        </div>
+
+                        <h4>
+                            @report.Name
+                        </h4>
+
+                        <p class="text-muted">
+                            @report.Description
+                        </p>
+
+                        <p class="small text-muted">
+                            Created:
+                            @report.CreatedDate.ToString("dd MMM yyyy")
+                        </p>
+
+                        <a asp-controller="Report"
+                           asp-action="Detail"
+                           asp-route-id="@report.Id"
+                           class="btn btn-primary w-100">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

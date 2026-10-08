@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.AdWords" Version="24.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CRM.Entities\CRM.Entities.csproj" />
     <ProjectReference Include="..\CRM.Framework\CRM.Framework.csproj" />
   </ItemGroup>
