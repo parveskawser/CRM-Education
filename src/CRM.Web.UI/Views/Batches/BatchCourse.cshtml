@@ -1,0 +1,68 @@
+﻿@model CRM.Entities.Batches
+
+@{
+    ViewData["Title"] = "Batch Courses";
+}
+
+<div class="container py-4">
+
+    <h2>Batch Courses</h2>
+
+    @foreach (var batch in Model.BatchList)
+    {
+        var course = Model.CourseList
+            .FirstOrDefault(x => x.Id == batch.CourseId);
+
+        <div class="card mb-3">
+            <div class="card-body">
+
+                <h4>
+                    Batch: @batch.BatchName
+                </h4>
+
+                <p>
+                    Batch ID: @batch.Id
+                </p>
+
+                <p>
+                    Schedule: @batch.Schedule
+                </p>
+
+                <p>
+                    Capacity: @batch.Capacity
+                </p>
+
+                <hr />
+
+                @if (course != null)
+                {
+                    <h5>Course Information</h5>
+
+                    <p>
+                        Course ID: @course.Id
+                    </p>
+
+                    <p>
+                        Course Name: @course.Title
+                    </p>
+
+                    <p>
+                        Level: @course.Level
+                    </p>
+
+                    <p>
+                        Language: @course.Language
+                    </p>
+                }
+                else
+                {
+                    <p class="text-danger">
+                        No course found for this batch.
+                    </p>
+                }
+
+            </div>
+        </div>
+    }
+
+</div>

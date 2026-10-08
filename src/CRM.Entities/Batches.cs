@@ -23,4 +23,10 @@ namespace CRM.Entities
 
         public bool IsActive { get; set; }
     }
+    public class Batches
+    {
+        public List<Batch> BatchList { get; set; }
+        public List<Course> CourseList { get; set; }
+    }
+
 }
