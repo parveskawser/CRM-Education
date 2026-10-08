@@ -8,5 +8,9 @@ namespace CRM.Web.UI.Controllers
         {
             return View();
         }
+        public IActionResult Index1()
+        {
+            return View();
+        }
     }
 }
