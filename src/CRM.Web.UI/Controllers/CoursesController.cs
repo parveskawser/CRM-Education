@@ -84,7 +84,8 @@ namespace CRM.Web.UI.Controllers
             DurationInMinutes = 720,
             IsPublished = true,
             IsFeatured = true
-        },new Course
+        },
+        new Course
                 {
                     Id = 2,
                     Title = "C# Programming Fundamentals",
