@@ -1,4 +1,501 @@
-﻿@{
-    Layout = "_PrivateLayout";
+﻿@using CRM.Entities
+@model List<Batch>
+
+@{
+    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
 }
-batch list
+
+<style>
+    .batches-page {
+        background: #f8fafc;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+        .batches-page *,
+        .batches-page *::before,
+        .batches-page *::after {
+            box-sizing: border-box;
+        }
+
+    .page-header {
+        background: #ffffff;
+        border: 1px solid #e8edf3;
+        border-radius: 20px;
+        padding: 28px 30px;
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #0f172a;
+        letter-spacing: -0.5px;
+    }
+
+    .page-subtitle {
+        color: #64748b;
+        font-size: 0.93rem;
+    }
+
+    .total-badge {
+        background: #eff6ff !important;
+        color: #2563eb !important;
+        border: 1px solid #dbeafe;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+    }
+
+    .batch-card {
+        background: #ffffff;
+        border: 1px solid #e8edf3 !important;
+        border-radius: 18px !important;
+        overflow: hidden;
+        box-shadow: 0 6px 24px rgba(15, 23, 42, 0.045) !important;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+        .batch-card:hover {
+            transform: translateY(-5px);
+            border-color: #dbeafe !important;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.09) !important;
+        }
+
+        .batch-card .card-body {
+            padding: 24px;
+        }
+
+    .batch-id {
+        background: #f1f5f9 !important;
+        color: #475569 !important;
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 0.73rem;
+        font-weight: 600;
+    }
+
+    .status-badge {
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .batch-title {
+        color: #0f172a;
+        font-size: 1.12rem;
+        font-weight: 700;
+        margin-top: 18px;
+        margin-bottom: 7px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .course-id {
+        color: #64748b;
+        font-size: 0.84rem;
+        margin-bottom: 20px;
+    }
+
+    .batch-info {
+        background: #f8fafc;
+        border: 1px solid #eef2f7;
+        border-radius: 13px;
+        padding: 13px 15px;
+        margin-bottom: 22px;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 7px 0;
+        font-size: 0.82rem;
+    }
+
+        .info-item + .info-item {
+            border-top: 1px solid #e9eef4;
+        }
+
+    .info-label {
+        color: #64748b;
+        flex-shrink: 0;
+    }
+
+    .info-value {
+        color: #334155;
+        font-weight: 600;
+        text-align: right;
+        max-width: 65%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    /* Enrollment status */
+    .enrollment-open,
+    .enrollment-closed {
+        display: inline-block;
+        padding: 7px 10px;
+        border-radius: 8px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .enrollment-open {
+        background: #f0fdf4;
+        border: 1px solid #dcfce7;
+        color: #16a34a;
+    }
+
+    .enrollment-closed {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        color: #94a3b8;
+        font-weight: 600;
+    }
+
+    /* Card footer */
+    .batch-footer {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 14px !important;
+        flex-wrap: nowrap !important;
+        width: 100%;
+    }
+
+        .batch-footer > div {
+            flex-shrink: 0;
+        }
+
+        .batch-footer .view-btn {
+            flex-shrink: 0;
+            margin: 0 !important;
+        }
+
+    /* Buttons */
+    .view-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px !important;
+        padding: 8px 14px !important;
+        font-size: 0.79rem !important;
+        font-weight: 600 !important;
+        white-space: nowrap;
+        text-decoration: none !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .view-btn:hover {
+            transform: translateY(-1px);
+            text-decoration: none !important;
+        }
+
+        .view-btn:focus,
+        .view-btn:active,
+        .view-btn:visited {
+            text-decoration: none !important;
+        }
+
+    .empty-state {
+        background: #ffffff;
+        border: 1px dashed #cbd5e1;
+        border-radius: 16px;
+        padding: 30px 20px;
+        color: #64748b;
+        font-size: 0.92rem;
+    }
+
+    .page-number {
+        color: #64748b;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-top: 32px;
+        padding-bottom: 15px;
+    }
+
+
+    /* Tablet */
+    @@media (max-width: 767.98px) {
+
+        .page-header {
+            padding: 22px;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+        }
+
+        .batch-card .card-body {
+            padding: 20px;
+        }
+
+        .batch-footer {
+            gap: 12px !important;
+        }
+    }
+
+
+    /* Mobile */
+    @@media (max-width: 575.98px) {
+
+        .page-header {
+            border-radius: 16px;
+        }
+
+        .batch-title {
+            font-size: 1.05rem;
+        }
+
+        .info-item {
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .info-value {
+            text-align: left;
+            max-width: 100%;
+        }
+        /*
+             * Keep Enrollment and View button
+             * on the same horizontal line.
+             */
+        .batch-footer {
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .view-btn {
+            width: auto !important;
+        }
+    }
+</style>
+
+
+<div class="batches-page">
+
+    <div class="container py-4">
+
+        <!-- Header -->
+        <div class="page-header mb-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+                <div>
+                    <h2 class="page-title mb-1">
+                        Our Batches
+                    </h2>
+
+                    <p class="page-subtitle mb-0">
+                        Explore available course batches
+                    </p>
+                </div>
+
+                <span class="badge total-badge">
+                    Total Batches: @Model.Count
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Batch Cards -->
+        <div class="row g-4">
+
+            @foreach (var batch in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card batch-card h-100">
+
+                        <div class="card-body d-flex flex-column">
+
+                            <!-- Batch Name & Status -->
+                            <div class="d-flex justify-content-between align-items-start gap-2">
+
+                                <span class="badge batch-id">
+                                    Batch #@batch.Id
+                                </span>
+
+                                @if (batch.Status == "Active")
+                                {
+                                    <span class="badge bg-success status-badge">
+                                        Active
+                                    </span>
+                                }
+                                else if (batch.Status == "Scheduled")
+                                {
+                                    <span class="badge bg-warning text-dark status-badge">
+                                        Scheduled
+                                    </span>
+                                }
+                                else if (batch.Status == "Completed")
+                                {
+                                    <span class="badge bg-secondary status-badge">
+                                        Completed
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger status-badge">
+                                        @batch.Status
+                                    </span>
+                                }
+
+                            </div>
+
+
+                            <!-- Batch Name -->
+                            <h5 class="batch-title">
+                                @batch.BatchName
+                            </h5>
+
+
+                            <!-- Course -->
+                            <p class="course-id">
+                                Course ID: @batch.CourseId
+                            </p>
+
+
+                            <!-- Batch Information -->
+                            <div class="batch-info">
+
+                                <div class="info-item">
+
+                                    <span class="info-label">
+                                        Schedule
+                                    </span>
+
+                                    <span class="info-value">
+                                        @batch.Schedule
+                                    </span>
+
+                                </div>
+
+
+                                <div class="info-item">
+
+                                    <span class="info-label">
+                                        Capacity
+                                    </span>
+
+                                    <span class="info-value">
+                                        @batch.Capacity students
+                                    </span>
+
+                                </div>
+
+
+                                <div class="info-item">
+
+                                    <span class="info-label">
+                                        Start Date
+                                    </span>
+
+                                    <span class="info-value">
+                                        @batch.StartDate.ToString("dd MMM yyyy")
+                                    </span>
+
+                                </div>
+
+
+                                @if (batch.EndDate.HasValue)
+                                {
+                                    <div class="info-item">
+
+                                        <span class="info-label">
+                                            End Date
+                                        </span>
+
+                                        <span class="info-value">
+                                            @batch.EndDate.Value.ToString("dd MMM yyyy")
+                                        </span>
+
+                                    </div>
+                                }
+
+                            </div>
+
+
+                            <!-- Footer -->
+                            <div class="mt-auto batch-footer">
+
+                                <div>
+                                    @if (batch.IsActive)
+                                    {
+                                        <span class="enrollment-open">
+                                            Enrollment Open
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="enrollment-closed">
+                                            Enrollment Closed
+                                        </span>
+                                    }
+                                </div>
+
+
+                                @if (batch.IsActive)
+                                {
+                                    <a asp-controller="Batches"
+                                       asp-action="Detail"
+                                       asp-route-id="@batch.Id"
+                                       class="btn btn-primary btn-sm view-btn">
+
+                                        View Batch
+
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Batches"
+                                       asp-action="Detail"
+                                       asp-route-id="@batch.Id"
+                                       class="btn btn-secondary btn-sm view-btn">
+
+                                        View Details
+
+                                    </a>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+
+        <!-- Empty State -->
+        @if (Model == null || !Model.Any())
+        {
+            <div class="empty-state text-center mt-4">
+                No batches are available right now.
+            </div>
+        }
+
+
+        <!-- Page Number -->
+        <h1 class="text-center page-number">
+            Page no: @ViewBag.pageno
+        </h1>
+
+    </div>
+
+</div>
