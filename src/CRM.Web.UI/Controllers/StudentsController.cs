@@ -74,7 +74,7 @@ namespace CRM.Web.UI.Controllers
 
             Students student = students.FirstOrDefault(s => s.Id == id);
 
-            return View(students);
+            return View(student);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CRM.Entities
 {
-    internal class Attendance
+    public class Attendance
     {
         public int Id { get; set; }
 

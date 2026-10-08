@@ -47,10 +47,26 @@ namespace CRM.Web.UI.Controllers
 
             return View(course);
         }
+         
+        public IActionResult StudentCourse()
+        {
 
+            StudentCourse course = new StudentCourse();
+            course.CourseList = Courses;
+            course.Student = Student;
+
+            return View(course);
+        }
 
         #region datafeeder
-
+        private static readonly Students Student = new Students
+        {
+            Id = 2,
+            Name = "Marufa",
+            Age = 22,
+            Department = "CSE",
+            Email = "marufa@gmail.com"
+        };
         private static readonly List<Course> Courses = new()
         {
         new Course
