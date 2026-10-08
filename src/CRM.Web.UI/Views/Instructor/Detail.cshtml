@@ -1,0 +1,149 @@
+﻿
+@using CRM.Entities
+
+@model Instructor
+
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "_PrivateLayout";
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+
+            <div class="mt-4">
+
+                <div class="d-flex gap-2 mb-3">
+                    <span class="badge bg-primary">
+                        @Model.Expertise
+                    </span>
+
+                    @if (Model.IsActive)
+                    {
+                        <span class="badge bg-success">Active Instructor</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactive Instructor</span>
+                    }
+                </div>
+
+                <h1 class="mb-3">@Model.Name</h1>
+
+                <p class="lead text-muted">
+                    @Model.Bio
+                </p>
+
+                <hr />
+
+                <h4>About This Instructor</h4>
+
+                <p>
+                    @Model.Bio
+                </p>
+
+                <h4 class="mt-4">Expertise</h4>
+
+                <p>
+                    @Model.Expertise
+                </p>
+
+                <h4 class="mt-4">Qualification</h4>
+
+                <p>
+                    @Model.Qualification
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+
+                <div class="card-body p-4">
+
+                    <h4 class="mb-3">Instructor Information</h4>
+
+                    <div class="mb-3">
+                        <strong>Name:</strong>
+                        <span class="float-end">
+                            @Model.Name
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Email:</strong>
+                        <span class="float-end">
+                            @Model.Email
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Phone:</strong>
+                        <span class="float-end">
+                            @Model.Phone
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Experience:</strong>
+                        <span class="float-end">
+                            @Model.ExperienceYears Years
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Status:</strong>
+
+                        <span class="float-end">
+                            @if (Model.IsActive)
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Inactive</span>
+                            }
+                        </span>
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-4">
+                        <strong>Qualification:</strong>
+
+                        <p class="text-muted mt-2 mb-0">
+                            @Model.Qualification
+                        </p>
+                    </div>
+
+                    @if (Model.IsActive)
+                    {
+                        <button class="btn btn-primary w-100 mb-2">
+                            View Courses
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary w-100 mb-2" disabled>
+                            Instructor Inactive
+                        </button>
+                    }
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary w-100">
+                        Back to Instructors
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

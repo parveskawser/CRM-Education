@@ -1,0 +1,670 @@
+﻿@using CRM.Entities
+@model Batch
+
+@{
+    ViewData["Title"] = Model.BatchName;
+    Layout = "_PrivateLayout";
+}
+
+<style>
+    .batch-details-page {
+        width: 100%;
+        min-height: 100vh;
+        background: #f8fafc;
+        box-sizing: border-box;
+    }
+
+        .batch-details-page *,
+        .batch-details-page *::before,
+        .batch-details-page *::after {
+            box-sizing: border-box;
+        }
+
+    .batch-content-wrapper {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 36px;
+    }
+
+    .batch-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(300px, 0.95fr);
+        gap: 24px;
+        align-items: start;
+    }
+
+    /* Main batch section */
+    .batch-main-card {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+        overflow: hidden;
+    }
+
+    .batch-header {
+        width: 100%;
+        margin-bottom: 26px;
+    }
+
+    .batch-title {
+        margin: 0 0 10px;
+        color: #0f172a;
+        font-size: clamp(1.7rem, 2.2vw, 2.2rem);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.6px;
+        overflow-wrap: anywhere;
+    }
+
+    .course-label {
+        margin: 0;
+        color: #64748b;
+        font-size: 0.95rem;
+    }
+
+    .status-badge {
+        padding: 7px 11px;
+        border-radius: 8px;
+        font-size: 0.74rem;
+        font-weight: 600;
+    }
+
+    .section-title {
+        margin-bottom: 12px;
+        color: #1e293b;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .section-text {
+        margin: 0;
+        color: #64748b;
+        font-size: 0.9rem;
+        line-height: 1.75;
+        overflow-wrap: anywhere;
+    }
+
+    .divider {
+        margin: 24px 0;
+        border: 0;
+        border-top: 1px solid #e5e7eb;
+        opacity: 1;
+    }
+
+    /* Schedule */
+    .schedule-card {
+        width: 100%;
+        margin: 0;
+        background: #f8fafc !important;
+        border: 1px solid #e5eaf0 !important;
+        border-radius: 14px !important;
+        box-shadow: none !important;
+    }
+
+        .schedule-card .card-body {
+            padding: 8px 15px !important;
+        }
+
+    .schedule-row {
+        display: grid;
+        grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1.7fr);
+        align-items: center;
+        gap: 20px;
+        min-height: 48px;
+        padding: 8px 0;
+    }
+
+        .schedule-row + .schedule-row {
+            border-top: 1px solid #e5e9ef;
+        }
+
+    .schedule-label {
+        color: #64748b;
+        font-size: 0.84rem;
+    }
+
+    .schedule-value {
+        color: #1e293b;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    /* Duration */
+    .duration-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .duration-item {
+        display: grid;
+        grid-template-columns: 130px minmax(0, 1fr);
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        padding: 13px 14px;
+        margin-bottom: 10px;
+        background: #f8fafc;
+        border: 1px solid #eef2f7;
+        border-radius: 12px;
+        font-size: 0.86rem;
+    }
+
+    .duration-label {
+        color: #64748b;
+    }
+
+    .duration-value {
+        color: #1e293b;
+        font-weight: 600;
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    /* Information panel */
+    .batch-info-card {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #e5eaf0;
+        border-radius: 20px;
+        padding: 26px;
+        box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+        position: sticky;
+        top: 20px;
+    }
+
+    .info-card-title {
+        margin: 0 0 20px;
+        color: #0f172a;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    .info-row {
+        display: grid;
+        grid-template-columns: minmax(90px, 0.8fr) minmax(0, 1.2fr);
+        gap: 15px;
+        align-items: start;
+        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px solid #eef2f7;
+    }
+
+        .info-row:last-of-type {
+            border-bottom: none;
+        }
+
+    .info-label {
+        color: #64748b;
+        font-size: 0.83rem;
+    }
+
+    .info-value {
+        min-width: 0;
+        color: #1e293b;
+        font-size: 0.83rem;
+        font-weight: 600;
+        text-align: right;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    /* Enrollment */
+    .enrollment-open-box,
+    .enrollment-closed-box {
+        width: 100%;
+        padding: 13px 14px;
+        border-radius: 11px;
+        text-align: center;
+    }
+
+    .enrollment-open-box {
+        background: #f0fdf4;
+        border: 1px solid #dcfce7;
+    }
+
+    .enrollment-closed-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+    }
+
+    .enrollment-status {
+        font-size: 0.86rem;
+        font-weight: 700;
+    }
+
+    .action-btn {
+        width: 100%;
+        min-height: 44px;
+        border-radius: 11px !important;
+        padding: 10px 14px !important;
+        font-size: 0.84rem !important;
+        font-weight: 600 !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+    /* Tablet */
+    @@media (max-width: 1100px) {
+        .batch-content-wrapper {
+            padding: 28px 24px;
+        }
+
+        .batch-layout {
+            grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+            gap: 20px;
+        }
+
+        .batch-main-card {
+            padding: 26px;
+        }
+
+        .batch-info-card {
+            padding: 22px;
+        }
+    }
+
+    /* Mobile */
+    @@media (max-width: 850px) {
+        .batch-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .batch-info-card {
+            position: relative;
+            top: auto;
+        }
+
+        .batch-content-wrapper {
+            padding: 22px 18px;
+        }
+    }
+
+    @@media (max-width: 575px) {
+        .batch-content-wrapper {
+            padding: 16px 12px;
+        }
+
+        .batch-main-card {
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .batch-info-card {
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .batch-title {
+            font-size: 1.55rem;
+        }
+
+        .schedule-row,
+        .duration-item,
+        .info-row {
+            grid-template-columns: 1fr;
+            gap: 5px;
+        }
+
+        .schedule-value,
+        .duration-value,
+        .info-value {
+            text-align: left;
+        }
+    }
+</style>
+
+
+<div class="batch-details-page">
+
+    <div class="batch-content-wrapper">
+
+        <div class="batch-layout">
+
+            <!-- Batch Details -->
+            <div>
+
+                <div class="batch-main-card">
+
+                    <!-- Status Badges -->
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+
+                        @if (Model.Status == "Active")
+                        {
+                            <span class="badge bg-success status-badge">
+                                Active
+                            </span>
+                        }
+                        else if (Model.Status == "Scheduled")
+                        {
+                            <span class="badge bg-warning text-dark status-badge">
+                                Scheduled
+                            </span>
+                        }
+                        else if (Model.Status == "Completed")
+                        {
+                            <span class="badge bg-secondary status-badge">
+                                Completed
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger status-badge">
+                                @Model.Status
+                            </span>
+                        }
+
+                        <span class="badge bg-primary status-badge">
+                            Batch #@Model.Id
+                        </span>
+
+                    </div>
+
+
+                    <!-- Batch Name -->
+                    <div class="batch-header">
+
+                        <h1 class="batch-title">
+                            @Model.BatchName
+                        </h1>
+
+                        <p class="course-label">
+                            Course ID: <strong>@Model.CourseId</strong>
+                        </p>
+
+                    </div>
+
+
+                    <hr class="divider" />
+
+
+                    <!-- About Batch -->
+                    <div class="mb-4">
+
+                        <h4 class="section-title">
+                            About This Batch
+                        </h4>
+
+                        <p class="section-text">
+                            This batch is organized for students enrolled in the
+                            selected course. Check the schedule, capacity, and
+                            batch dates below for more information.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Batch Schedule -->
+                    <div class="mb-4">
+
+                        <h4 class="section-title">
+                            Class Schedule
+                        </h4>
+
+                        <div class="card schedule-card">
+
+                            <div class="card-body">
+
+                                <div class="schedule-row">
+
+                                    <span class="schedule-label">
+                                        Schedule
+                                    </span>
+
+                                    <span class="schedule-value">
+                                        @Model.Schedule
+                                    </span>
+
+                                </div>
+
+                                <div class="schedule-row">
+
+                                    <span class="schedule-label">
+                                        Class Capacity
+                                    </span>
+
+                                    <span class="schedule-value">
+                                        @Model.Capacity students
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Batch Dates -->
+                    <div>
+
+                        <h4 class="section-title">
+                            Batch Duration
+                        </h4>
+
+                        <ul class="duration-list">
+
+                            <li class="duration-item">
+
+                                <span class="duration-label">
+                                    Start Date
+                                </span>
+
+                                <span class="duration-value">
+                                    @Model.StartDate.ToString("dd MMMM yyyy")
+                                </span>
+
+                            </li>
+
+                            @if (Model.EndDate.HasValue)
+                            {
+                                <li class="duration-item">
+
+                                    <span class="duration-label">
+                                        End Date
+                                    </span>
+
+                                    <span class="duration-value">
+                                        @Model.EndDate.Value.ToString("dd MMMM yyyy")
+                                    </span>
+
+                                </li>
+                            }
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Batch Information -->
+            <div>
+
+                <div class="batch-info-card">
+
+                    <h4 class="info-card-title">
+                        Batch Information
+                    </h4>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Batch
+                        </span>
+
+                        <span class="info-value">
+                            #@Model.Id
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Course ID
+                        </span>
+
+                        <span class="info-value">
+                            @Model.CourseId
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Schedule
+                        </span>
+
+                        <span class="info-value">
+                            @Model.Schedule
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Capacity
+                        </span>
+
+                        <span class="info-value">
+                            @Model.Capacity
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Start Date
+                        </span>
+
+                        <span class="info-value">
+                            @Model.StartDate.ToString("dd MMM yyyy")
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            End Date
+                        </span>
+
+                        <span class="info-value">
+
+                            @if (Model.EndDate.HasValue)
+                            {
+                                @Model.EndDate.Value.ToString("dd MMM yyyy")
+                            }
+                            else
+                            {
+                                <span>Not specified</span>
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+                            Status
+                        </span>
+
+                        <span class="info-value">
+                            @Model.Status
+                        </span>
+
+                    </div>
+
+
+                    <hr class="divider" />
+
+
+                    <!-- Enrollment -->
+                    <div class="mb-4">
+
+                        @if (Model.IsActive)
+                        {
+                            <div class="enrollment-open-box">
+
+                                <span class="enrollment-status text-success">
+                                    Enrollment Open
+                                </span>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="enrollment-closed-box">
+
+                                <span class="enrollment-status text-secondary">
+                                    Enrollment Closed
+                                </span>
+
+                            </div>
+                        }
+
+                    </div>
+
+
+                    @if (Model.IsActive)
+                    {
+                        <a asp-controller="Enrollment"
+                           asp-action="Create"
+                           asp-route-batchId="@Model.Id"
+                           class="btn btn-primary action-btn mb-2">
+
+                            Enroll in This Batch
+
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary action-btn mb-2"
+                                disabled>
+
+                            Enrollment Closed
+
+                        </button>
+                    }
+
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary action-btn">
+
+                        Back to Batches
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

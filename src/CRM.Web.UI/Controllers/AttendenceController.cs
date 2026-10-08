@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+
+       using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Web.UI.Controllers
-{
-    public class AttendenceController : Controller
     {
-        public IActionResult Index()
+        
+             public class AttendenceController : Controller
         {
-            return View();
+            public IActionResult Index()
+            {
+                return View();
+            }
         }
     }
-}

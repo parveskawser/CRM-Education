@@ -1,0 +1,98 @@
+﻿ 
+
+@model CRM.Entities.Attendance
+
+@{
+    ViewData["Title"] = "Attendance Details";
+    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <h2 class="mb-4">
+                        Attendance Details
+                    </h2>
+
+                    <div class="mb-3">
+                        <strong>Attendance ID:</strong>
+                        <span class="float-end">
+                            @Model.Id
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Student ID:</strong>
+                        <span class="float-end">
+                            @Model.StudentId
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Course ID:</strong>
+                        <span class="float-end">
+                            @Model.CourseId
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Attendance Date:</strong>
+                        <span class="float-end">
+                            @Model.AttendanceDate.ToString("dd MMM yyyy")
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <strong>Status:</strong>
+
+                        <span class="float-end">
+
+                            @if (Model.IsPresent)
+                            {
+                                <span class="badge bg-success">
+                                    Present
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">
+                                    Absent
+                                </span>
+                            }
+
+                        </span>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <strong>Remarks:</strong>
+
+                        <p class="text-muted mt-2">
+                            @Model.Remarks
+                        </p>
+
+                    </div>
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary">
+                        Back to Attendance
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,7 +1,16 @@
 <Solution>
-  <Project Path="CRM.DataAccess/CRM.DataAccess.csproj" />
-  <Project Path="CRM.Entities/CRM.Entities.csproj" />
-  <Project Path="CRM.Facade/CRM.Facade.csproj" />
-  <Project Path="CRM.Framework/CRM.Framework.csproj" />
-  <Project Path="CRM.Web.UI/CRM.Web.UI.csproj" />
+  <Folder Name="/API/">
+    <Project Path="CRM.API/CRM.API.csproj" Id="9b88c170-2b93-4bfe-8c52-1e6b9299b295" />
+  </Folder>
+  <Folder Name="/Business/">
+    <Project Path="CRM.Facade/CRM.Facade.csproj" />
+  </Folder>
+  <Folder Name="/Library/">
+    <Project Path="CRM.DataAccess/CRM.DataAccess.csproj" />
+    <Project Path="CRM.Entities/CRM.Entities.csproj" />
+    <Project Path="CRM.Framework/CRM.Framework.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="CRM.Web.UI/CRM.Web.UI.csproj" />
+  </Folder>
 </Solution>

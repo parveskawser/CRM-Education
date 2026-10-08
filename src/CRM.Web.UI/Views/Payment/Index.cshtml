@@ -1,9 +1,129 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using CRM.Entities
+
+@model List<Payment>
+
 @{
-    Layout = "_PrivateLayout";
+    Layout = "~/Views/Shared/_PrivateLayout.cshtml";
 }
 
+<div class="container py-4">
 
-PaymentList
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Payment List</h2>
+            <p class="text-muted mb-0">
+                View all course payments
+            </p>
+        </div>
+
+        <span class="badge bg-primary fs-6">
+            Total Payments: @Model.Count
+        </span>
+    </div>
+
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Student ID</th>
+                    <th>Course ID</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Transaction ID</th>
+                    <th>Payment Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var payment in Model)
+                {
+                    <tr>
+
+                        <td>@payment.Id</td>
+
+                        <td>@payment.StudentId</td>
+
+                        <td>@payment.CourseId</td>
+
+                        <td>
+                            <strong>
+                                ৳@payment.Amount.ToString("N0")
+                            </strong>
+                        </td>
+
+                        <td>
+                            @payment.PaymentMethod
+                        </td>
+
+                        <td>
+                            @payment.TransactionId
+                        </td>
+
+                        <td>
+                            @payment.PaymentDate.ToString("dd MMM yyyy")
+                        </td>
+
+                        <td>
+
+                            @if (payment.Status == "Completed")
+                            {
+                                <span class="badge bg-success">
+                                    Completed
+                                </span>
+                            }
+                            else if (payment.Status == "Pending")
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">
+                                    @payment.Status
+                                </span>
+                            }
+
+                        </td>
+
+                        <td>
+
+                            <a asp-controller="Payment"
+                               asp-action="Detail"
+                               asp-route-id="@payment.Id"
+                               class="btn btn-primary btn-sm">
+
+                                Details
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            No payments are available right now.
+        </div>
+    }
+
+</div>
+
+<h1>Page no: @ViewBag.pageno</h1>

@@ -1,0 +1,16 @@
+﻿@model CRM.Entities.StudentCourse
+
+<div>
+    <h1>Student Detail</h1>
+    <p>Name: @Model.Student.Name</p>
+    <p>Department: @Model.Student.Department</p>
+    <p>Email: @Model.Student.Email</p>
+</div>
+
+<div>
+    <h1>Course List</h1>
+    @foreach (var item in Model.CourseList)
+    {
+        <p>Course Name: @item.Title</p>
+    }
+</div>
