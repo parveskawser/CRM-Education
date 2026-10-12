@@ -19,6 +19,25 @@ namespace CRM.Web.UI.Controllers
             return View(model);
         }
 
+
+
+        
+        public IActionResult AddCourse()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCourse(Course course)
+        {
+            course.Id = Courses.Count + 1;
+            Courses.Add(course);
+
+            return RedirectToAction("StudentCourse");
+        }
+
+
+
         private static readonly Students Student = new Students
         {
             Id = 2,

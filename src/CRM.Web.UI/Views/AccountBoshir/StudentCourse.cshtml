@@ -1,4 +1,9 @@
-﻿@model CRM.Entities.StudentCourse
+﻿@{
+    Layout = "_PrivateLayout";
+}
+
+
+@model CRM.Entities.StudentCourse
 
 <div>
     <h1>Student Detail</h1>
@@ -9,6 +14,7 @@
 
 <div>
     <h1>Course List</h1>
+    <a href="/AccountBoshir/AddCourse">+ Add Course</a>
     @foreach (var item in Model.CourseList)
     {
         <p>Course Name: @item.Title</p>
