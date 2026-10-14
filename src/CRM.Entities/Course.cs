@@ -18,7 +18,7 @@ namespace CRM.Entities
         public int InstructorId { get; set; }
         public int CategoryId { get; set; }
 
-        public string Level { get; set; } = "Beginner"; // Beginner, Intermediate, Advanced
+        public string Level { get; set; } = "Beginner";
         public string Language { get; set; } = "Bangla";
 
         public int TotalLessons { get; set; }
@@ -26,7 +26,6 @@ namespace CRM.Entities
 
         public bool IsPublished { get; set; }
         public bool IsFeatured { get; set; }
-
     }
 
     public class StudentCourse

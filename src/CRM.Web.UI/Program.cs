@@ -1,9 +1,21 @@
+using CRM.DataAccess;
+using CRM.DataAccess.Interface;
+using CRM.Facade;
+using CRM.Facade.Interface;
+using Google;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//Dependency Injection Initial
+builder.Services.AddCrmFacade(builder.Configuration);
+
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

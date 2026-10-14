@@ -8,10 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Google.AdWords" Version="24.19.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CRM.Entities\CRM.Entities.csproj" />
+    <ProjectReference Include="..\CRM.Facade\CRM.Facade.csproj" />
     <ProjectReference Include="..\CRM.Framework\CRM.Framework.csproj" />
   </ItemGroup>
 
