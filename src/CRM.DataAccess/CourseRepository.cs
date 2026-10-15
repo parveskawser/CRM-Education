@@ -1,4 +1,4 @@
-﻿using CRM.DataAccess.Interface;
+using CRM.DataAccess.Interface;
 using CRM.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace CRM.DataAccess
     public class CourseRepository : ICourseRepository
     {
         private readonly ApplicationDbContext _dbContext;
-        
+
         public CourseRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
