@@ -34,8 +34,8 @@ namespace CRM.Facade
             if (course.Price < 0)
                 throw new Exception("Course price cannot be negative.");
 
-            if (course.DiscountPrice.HasValue && course.DiscountPrice > course.Price)
-                throw new Exception("Discount price cannot be greater than regular price.");
+            //if (course.DiscountPrice.HasValue && course.DiscountPrice > course.Price)
+            //    throw new Exception("Discount price cannot be greater than regular price.");
 
             //database final call
             await _courseRepository.AddAsync(course);
@@ -43,7 +43,7 @@ namespace CRM.Facade
 
         public async Task<bool> UpdateCourseAsync(Course course)
         {
-            var existingCourse = await _courseRepository.GetByIdAsync(course.Id);
+            var existingCourse = await _courseRepository.GetByIdAsync(course.CourseId);
 
             if (existingCourse == null)
                 return false;
@@ -51,20 +51,20 @@ namespace CRM.Facade
             if (string.IsNullOrWhiteSpace(course.Title))
                 throw new Exception("Course title is required.");
 
-            existingCourse.Title = course.Title;
-            existingCourse.ShortDescription = course.ShortDescription;
-            existingCourse.Description = course.Description;
-            existingCourse.ThumbnailUrl = course.ThumbnailUrl;
-            existingCourse.Price = course.Price;
-            existingCourse.DiscountPrice = course.DiscountPrice;
-            existingCourse.InstructorId = course.InstructorId;
-            existingCourse.CategoryId = course.CategoryId;
-            existingCourse.Level = course.Level;
-            existingCourse.Language = course.Language;
-            existingCourse.TotalLessons = course.TotalLessons;
-            existingCourse.DurationInMinutes = course.DurationInMinutes;
-            existingCourse.IsPublished = course.IsPublished;
-            existingCourse.IsFeatured = course.IsFeatured;
+            //existingCourse.Title = course.Title;
+            //existingCourse.ShortDescription = course.ShortDescription;
+            //existingCourse.Description = course.Description;
+            //existingCourse.ThumbnailUrl = course.ThumbnailUrl;
+            //existingCourse.Price = course.Price;
+            //existingCourse.DiscountPrice = course.DiscountPrice;
+            //existingCourse.InstructorId = course.InstructorId;
+            //existingCourse.CategoryId = course.CategoryId;
+            //existingCourse.Level = course.Level;
+            //existingCourse.Language = course.Language;
+            //existingCourse.TotalLessons = course.TotalLessons;
+            //existingCourse.DurationInMinutes = course.DurationInMinutes;
+            //existingCourse.IsPublished = course.IsPublished;
+            //existingCourse.IsFeatured = course.IsFeatured;
 
             await _courseRepository.UpdateAsync(existingCourse);
             return true;

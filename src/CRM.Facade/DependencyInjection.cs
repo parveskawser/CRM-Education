@@ -24,9 +24,7 @@ namespace CRM.Facade
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ICourseFacade, CourseFacade>();
 
-            services.AddScoped<IInstructorRepository, InstructorRepository>();
-            services.AddScoped<IInstructorFacade, InstructorFacade>();
-
+            
             return services;
         }
     }

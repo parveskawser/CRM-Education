@@ -20,7 +20,7 @@ namespace CRM.DataAccess
         public async Task<List<Course>> GetAllAsync()
         {
             return await _dbContext.Courses
-                .OrderByDescending(x => x.Id)
+                .OrderByDescending(x => x.CourseId)
                 .ToListAsync();
         }
 
@@ -31,6 +31,7 @@ namespace CRM.DataAccess
 
         public async Task AddAsync(Course course)
         {
+            //Insert into Course Value(ss,sss,ss,ss)
             await _dbContext.Courses.AddAsync(course);
             await _dbContext.SaveChangesAsync();
         }
