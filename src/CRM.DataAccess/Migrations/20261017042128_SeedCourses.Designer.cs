@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRM.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261015051543_SeedCourses")]
+    [Migration("20261017042128_SeedCourses")]
     partial class SeedCourses
     {
         /// <inheritdoc />

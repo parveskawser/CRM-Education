@@ -1,16 +1,21 @@
 ﻿using CRM.Entities;
 using CRM.Facade.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CRM.Web.UI.Controllers
 {
+    [Authorize]//Role 
     public class CoursesController : Controller
     {
         private readonly ICourseFacade _courseFacade;
+        private readonly IInstructorProfileFacade _instructorProfileFacade;
 
-        public CoursesController(ICourseFacade courseFacade)
+        public CoursesController(ICourseFacade courseFacade, IInstructorProfileFacade instructorProfileFacade)
         {
             _courseFacade = courseFacade;
+            _instructorProfileFacade = instructorProfileFacade;
         }
 
         public async Task<IActionResult> Index()
@@ -63,27 +68,45 @@ namespace CRM.Web.UI.Controllers
             return View(course);
         }
 
-        
 
-        public IActionResult AddCourse()
+        [HttpGet]
+        public async Task<IActionResult> AddCourse()
         {
+            var instructorList = await _instructorProfileFacade.GetInstructorProfilesAsync();
+
+            ViewBag.Instructors = new SelectList(
+                instructorList,
+                "UserId",
+                "Bio"
+            );
+             
+
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddCourse(Course course)
+        public async Task<IActionResult> AddCourse(Course course)
         {
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("AddCourse", course);
+            //}
+            try
             {
-                return View("Create", course);
+                _courseFacade.AddCourseAsync(course);
+            }
+            catch (Exception ex)
+            {
+                return View("AddCourse", course);
             }
 
             // পরে এখানে Database-এ Save করবেন
             // _context.Courses.Add(course);
             // _context.SaveChanges();
 
-            return RedirectToAction("List");
+            return RedirectToAction("Index");
         }
          
     }
