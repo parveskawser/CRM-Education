@@ -5,102 +5,229 @@
 @{
     Layout = "_PrivateLayout";
 }
+  
 
-@* @foreach(var item in Model)
-{
-    <h4>@item.Title</h4>
-} *@
-@* 
+<style>
+    .course-page {
+        padding: 25px;
+        width: 100%;
+    }
 
-<div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2 class="mb-1">Our Courses</h2>   <a href="/Courses/AddCourse">Add Course</a>
-            <p class="text-muted mb-0">Explore available learning courses</p>
+    .course-card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        border: 1px solid #e6e8f0;
+    }
+
+    .course-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .course-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #17233d;
+    }
+
+    .btn-purple {
+        background: #635bdf;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 18px;
+        text-decoration: none;
+    }
+
+        .btn-purple:hover {
+            background: #5046c7;
+            color: white;
+        }
+
+    .course-table th {
+        background: #f4f5fb;
+        padding: 15px;
+        font-weight: 600;
+        color: #667085;
+        white-space: nowrap;
+    }
+
+    .course-table td {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    .course-table tbody tr:hover {
+        background: #fafaff;
+    }
+
+    .badge-free {
+        background: #e7f8ef;
+        color: #17844d;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+
+    .badge-paid {
+        background: #eeeafd;
+        color: #635bdf;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+
+    .action-group {
+        display: flex;
+        gap: 6px;
+    }
+</style>
+
+<div class="course-page">
+
+    <div class="course-card">
+
+        <div class="course-header">
+            <div>
+                <h3 class="course-title">Course Management</h3>
+                <p class="text-muted mb-0">
+                    Manage all academy courses
+                </p>
+            </div>
+
+            <a asp-controller="Courses"
+               asp-action="AddCourse"
+               class="btn-purple">
+                + Add New Course
+            </a>
         </div>
 
-        <span class="badge bg-primary fs-6">
-            Total Courses: @Model.Count
-        </span>
-    </div>
+        <div class="mb-4">
+            <input type="search"
+                   id="courseSearch"
+                   class="form-control"
+                   style="max-width:350px;"
+                   placeholder="Search courses..." />
+        </div>
 
-    <div class="row g-4">
-        @foreach (var course in Model)
-        {
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm border-0">
-                     
+        <div class="table-responsive">
 
-                    <div class="card-body d-flex flex-column">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge bg-info text-dark">@course.Level</span>
+            <table class="table course-table" id="courseTable">
 
-                            @if (course.IsFeatured)
-                            {
-                                <span class="badge bg-warning text-dark">Featured</span>
-                            }
-                        </div>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Course Title</th>
+                        <th>Description</th>
+                        <th>Instructor</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-                        <h5 class="card-title">@course.Title</h5>
+                <tbody>
 
-                        <p class="card-text text-muted">
-                            @course.ShortDescription
-                        </p>
+                    @foreach (var course in Model)
+                    {
+                        <tr>
+                            <td>@course.CourseId</td>
 
-                        <div class="small text-muted mb-3">
-                            <div>Language: @course.Language</div>
-                            <div>Lessons: @course.TotalLessons</div>
-                            <div>Duration: @course.DurationInMinutes minutes</div>
-                        </div>
+                            <td>
+                                <strong>@course.Title</strong>
+                            </td>
 
-                        <div class="mt-auto d-flex justify-content-between align-items-center">
-                            <div>
-                                @if (course.DiscountPrice.HasValue)
+                            <td>
+                                @(course.Description?.Length > 60
+                                    ? course.Description.Substring(0, 60) + "..."
+                                    : course.Description)
+                            </td>
+
+                            <td>
+                                Instructor #@course.InstructorId
+                            </td>
+
+                            <td>
+                                @if (course.IsFree)
                                 {
-                                    <span class="fw-bold text-success">
-                                        ৳@course.DiscountPrice.Value.ToString("N0")
-                                    </span>
-                                    <small class="text-muted text-decoration-line-through ms-1">
-                                        ৳@course.Price.ToString("N0")
-                                    </small>
+                                    <span class="badge-free">Free</span>
                                 }
                                 else
                                 {
-                                    <span class="fw-bold text-success">
-                                        ৳@course.Price.ToString("N0")
+                                    <span class="badge-paid">Paid</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (course.IsFree)
+                                {
+                                    <span>Free</span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        @course.Price.ToString("N2") BDT
                                     </span>
                                 }
-                            </div>
+                            </td>
 
-                            @if (course.IsPublished)
-                            {
-                                <a asp-controller="Courses"
-                                   asp-action="Detail"
-                                   asp-route-id="@course.Id"
-                                   class="btn btn-primary btn-sm">
-                                    View Course
-                                </a>
-                            }
-                            else
-                            {
-                                <button class="btn btn-secondary btn-sm" disabled>
-                                    Coming Soon
-                                </button>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
+                            <td>
+                                @course.CreatedAt.ToString("dd MMM yyyy")
+                            </td>
 
-    @if (Model == null || !Model.Any())
-    {
-        <div class="alert alert-info text-center">
-            No courses are available right now.
+                            <td>
+                                <div class="action-group">
+
+                                    <a asp-action="Details"
+                                       asp-route-id="@course.CourseId"
+                                       class="btn btn-sm btn-outline-primary">
+                                        View
+                                    </a>
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@course.CourseId"
+                                       class="btn btn-sm btn-outline-warning">
+                                        Edit
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@course.CourseId"
+                                       class="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
         </div>
-    }
+
+    </div>
 </div>
 
+ 
+    <script>
+        document.getElementById("courseSearch")
+            .addEventListener("input", function () {
 
-<h1>Page no: @ViewBag.pageno </h1> *@
+                const search = this.value.toLowerCase();
+
+                document.querySelectorAll(
+                    "#courseTable tbody tr"
+                ).forEach(row => {
+
+                    row.style.display =
+                        row.innerText.toLowerCase().includes(search)
+                            ? ""
+                            : "none";
+                });
+            });
+    </script>
+ 

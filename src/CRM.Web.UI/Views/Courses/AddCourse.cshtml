@@ -6,7 +6,366 @@
 
 @model Course
 
-@{
-    ViewData["Title"] = "Create Course";
-}
- 
+
+<style>
+    .create-course-page {
+        padding: 28px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .page-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .page-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #17233d;
+        margin-bottom: 5px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+        color: #8190a7;
+    }
+
+    .form-card {
+        background: #fff;
+        border: 1px solid #e8ebf3;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 22px;
+    }
+
+    .section-title {
+        font-size: 17px;
+        font-weight: 650;
+        color: #17233d;
+        padding-bottom: 17px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid #eef0f5;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 13px;
+        color: #45536c;
+        margin-bottom: 8px;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #e1e5ef;
+        border-radius: 9px;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #635bdf;
+            box-shadow: 0 0 0 3px rgba(99,91,223,.10);
+        }
+
+    .form-hint {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 6px;
+    }
+
+    .required-star {
+        color: #e74c3c;
+    }
+
+    .btn-save {
+        background: #635bdf;
+        color: #fff;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 9px;
+        font-weight: 600;
+    }
+
+        .btn-save:hover {
+            background: #5148cc;
+            color: white;
+        }
+
+    .btn-cancel {
+        border: 1px solid #dce1eb;
+        color: #64748b;
+        padding: 12px 25px;
+        border-radius: 9px;
+        text-decoration: none;
+        background: white;
+    }
+
+        .btn-cancel:hover {
+            background: #f5f6fb;
+        }
+
+    .pricing-box {
+        padding: 18px;
+        background: #f8f9fe;
+        border-radius: 10px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    @@media (max-width: 768px) {
+        .create-course-page {
+            padding: 15px;
+        }
+
+        .form-card {
+            padding: 18px;
+        }
+
+        .page-top {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 12px;
+        }
+    }
+</style>
+
+<div class="create-course-page">
+
+    <!-- Page Header -->
+    <div class="page-top">
+
+        <div>
+            <h2 class="page-title">Create New Course</h2>
+            <p class="page-subtitle">
+                Add a new course to Piistech Academy
+            </p>
+        </div>
+
+        <a asp-controller="Course"
+           asp-action="Index"
+           class="btn-cancel">
+            Back to Courses
+        </a>
+
+    </div>
+
+    <form asp-controller="Courses"
+          asp-action="AddCourse"
+          method="post"
+          id="createCourseForm">
+
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger mb-3"></div>
+
+        <!-- Basic Information -->
+        <div class="form-card">
+
+            <h4 class="section-title">
+                Basic Information
+            </h4>
+
+            <div class="row g-4">
+
+                <!-- Course Title -->
+                <div class="col-md-12">
+
+                    <label asp-for="Title" class="form-label">
+                        Course Title
+                        <span class="required-star">*</span>
+                    </label>
+
+                    <input asp-for="Title"
+                           class="form-control"
+                           maxlength="200"
+                           placeholder="Enter course title" />
+
+                    <span asp-validation-for="Title"
+                          class="text-danger small"></span>
+
+                    <div class="form-hint">
+                        Maximum 200 characters
+                    </div>
+
+                </div>
+
+                <!-- Description -->
+                <div class="col-md-12">
+
+                    <label asp-for="Description"
+                           class="form-label">
+                        Course Description
+                    </label>
+
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="5"
+                              placeholder="Describe the course objectives, content and learning outcomes"></textarea>
+
+                    <span asp-validation-for="Description"
+                          class="text-danger small"></span>
+
+                </div>
+
+                <!-- Instructor -->
+                <div class="col-md-12">
+
+                    <label asp-for="InstructorId"
+                           class="form-label">
+                        Select Instructor
+                        <span class="required-star">*</span>
+                    </label>
+
+                   <select asp-for="InstructorId"
+                            asp-items="ViewBag.Instructors"
+                            class="form-select">
+
+                        <option value="">
+                            -- Select Instructor --
+                        </option>
+
+                    </select> 
+                    
+
+
+                    <span asp-validation-for="InstructorId"
+                          class="text-danger small"></span>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="form-card">
+
+            <h4 class="section-title">
+                Course Pricing
+            </h4>
+
+            <div class="pricing-box">
+
+                <div class="form-check form-switch">
+
+                    <input asp-for="IsFree"
+                           class="form-check-input"
+                           type="checkbox"
+                           id="isFreeSwitch" />
+
+                    <label class="form-check-label fw-semibold"
+                           for="isFreeSwitch">
+                        Free Course
+                    </label>
+
+                </div>
+
+                <p class="form-hint mb-0">
+                    Enable this if students can enroll for free.
+                </p>
+
+            </div>
+
+            <div class="row mt-4" id="priceSection">
+
+                <div class="col-md-6">
+
+                    <label asp-for="Price"
+                           class="form-label">
+                        Course Price (BDT)
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            BDT
+                        </span>
+
+                        <input asp-for="Price"
+                               type="number"
+                               step="0.01"
+                               min="0"
+                               class="form-control"
+                               id="coursePrice"
+                               placeholder="0.00" />
+
+                    </div>
+
+                    <span asp-validation-for="Price"
+                          class="text-danger small"></span>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+
+            <a asp-controller="Course"
+               asp-action="Index"
+               class="btn-cancel">
+                Cancel
+            </a>
+
+            <button type="submit"
+                    class="btn-save"
+                    id="saveCourseBtn">
+                Save Course
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<partial name="_ValidationScriptsPartial" />
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const freeSwitch =
+            document.getElementById("isFreeSwitch");
+
+        const priceSection =
+            document.getElementById("priceSection");
+
+        const priceInput =
+            document.getElementById("coursePrice");
+
+        function updatePricing() {
+
+            if (freeSwitch.checked) {
+
+                priceSection.style.display = "none";
+                priceInput.value = "0";
+                priceInput.disabled = false;
+
+            } else {
+
+                priceSection.style.display = "";
+
+            }
+        }
+
+        freeSwitch.addEventListener(
+            "change",
+            updatePricing
+        );
+
+        updatePricing();
+
+    });
+</script>
