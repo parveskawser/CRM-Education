@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CRM.Web.UI.Controllers
-{
-    [Authorize]//Role 
+{ 
     public class CoursesController : Controller
     {
         private readonly ICourseFacade _courseFacade;
+
+
+
+
         private readonly IInstructorProfileFacade _instructorProfileFacade;
 
         public CoursesController(ICourseFacade courseFacade, IInstructorProfileFacade instructorProfileFacade)
@@ -21,6 +24,9 @@ namespace CRM.Web.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var courses = await _courseFacade.GetCoursesAsync();
+
+            //Course course = new Course();
+            //List<Course> list = new List<Course>();
             return View(courses);
         }
 
@@ -54,9 +60,9 @@ namespace CRM.Web.UI.Controllers
         //    return View(courses);
         //}
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var course = _courseFacade.GetCourseByIdAsync(id);
+            var course =  await _courseFacade.GetCourseByIdAsync(id);
 
             //var course = Courses.FirstOrDefault(x => x.Id == id);
 
@@ -64,25 +70,39 @@ namespace CRM.Web.UI.Controllers
             {
                 return NotFound();
             }
+            
+            var instructorList = await _instructorProfileFacade
+      .GetInstructorProfilesAsync();
+
+            ViewBag.Instructors = new SelectList(
+                instructorList,
+                "UserId",
+                "Expertise",
+                course.InstructorId
+            );
 
             return View(course);
         }
 
 
         [HttpGet]
-        public async Task<IActionResult> AddCourse()
+        public async Task<IActionResult> AddCourse(int id)
         {
+            Course course = await _courseFacade.GetCourseByIdAsync(id);
+
+            if(course == null)
+                course = new Course();
+            
+            
             var instructorList = await _instructorProfileFacade.GetInstructorProfilesAsync();
 
             ViewBag.Instructors = new SelectList(
                 instructorList,
                 "UserId",
                 "Bio"
-            );
-             
+            ); 
 
-
-            return View();
+            return View(course);
         }
 
         [HttpPost]
@@ -95,7 +115,10 @@ namespace CRM.Web.UI.Controllers
             //}
             try
             {
-                _courseFacade.AddCourseAsync(course);
+                if (course.CourseId > 0)
+                    _courseFacade.UpdateCourseAsync(course);
+                else
+                    _courseFacade.AddCourseAsync(course);
             }
             catch (Exception ex)
             {
