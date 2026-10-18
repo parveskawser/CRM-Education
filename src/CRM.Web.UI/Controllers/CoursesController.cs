@@ -5,14 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CRM.Web.UI.Controllers
-{ 
+{
+    [Authorize]
     public class CoursesController : Controller
     {
-        private readonly ICourseFacade _courseFacade;
-
-
-
-
+        private readonly ICourseFacade _courseFacade; 
         private readonly IInstructorProfileFacade _instructorProfileFacade;
 
         public CoursesController(ICourseFacade courseFacade, IInstructorProfileFacade instructorProfileFacade)

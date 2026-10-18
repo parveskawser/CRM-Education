@@ -50,5 +50,11 @@ namespace CRM.Facade
             await _userRepository.DeleteAsync(id);
             return true;
         }
+
+        public async Task<User> GetUserByEmailPasswordAsync(string email, string password)
+        {
+
+            return await _userRepository.GetUserByEmailPasswordAsync(email,password);
+        }
     }
 }

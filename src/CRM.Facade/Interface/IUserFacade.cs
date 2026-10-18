@@ -9,5 +9,7 @@ namespace CRM.Facade.Interface
         Task AddUserAsync(User user);
         Task<bool> UpdateUserAsync(User user);
         Task<bool> DeleteUserAsync(int id);
+
+        Task<User?> GetUserByEmailPasswordAsync(string email, string password);
     }
 }
