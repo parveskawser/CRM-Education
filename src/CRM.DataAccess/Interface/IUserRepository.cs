@@ -12,5 +12,6 @@ namespace CRM.DataAccess.Interface
         Task AddAsync(User user);
         Task UpdateAsync(User user);
         Task DeleteAsync(int id);
+        Task<User?> GetUserByEmailPasswordAsync(string email, string password);
     }
 }

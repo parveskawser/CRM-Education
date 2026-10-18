@@ -1,117 +1,188 @@
 ﻿@using CRM.Entities
-
 @model Course
 
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = "Edit Course";
     Layout = "_PrivateLayout";
 }
-@* 
-<div class="container py-5">
-    <div class="row g-4">
-        <div class="col-lg-8">
-             
 
-            <div class="mt-4">
-                <div class="d-flex gap-2 mb-3">
-                    <span class="badge bg-primary">@Model.Level</span>
-                    <span class="badge bg-secondary">@Model.Language</span>
+<div class="course-form-page">
 
-                    @if (Model.IsFeatured)
-                    {
-                        <span class="badge bg-warning text-dark">Featured Course</span>
-                    }
-                </div>
-
-                <h1 class="mb-3">@Model.Title</h1>
-
-                <p class="lead text-muted">@Model.ShortDescription</p>
-
-                <hr />
-
-                <h4>About This Course</h4>
-                <p>@Model.Description</p>
-
-                <h4 class="mt-4">What You Will Learn</h4>
-                <ul>
-                    <li>Practical project-based learning</li>
-                    <li>Industry-standard development process</li>
-                    <li>Course materials and recorded lessons</li>
-                    <li>Certificate after successful completion</li>
-                </ul>
-            </div>
+    <div class="course-page-header">
+        <div>
+            <h2 class="course-page-title">Edit Course</h2>
+            <p class="course-page-subtitle mb-0">
+                Update course information for Piistech Academy
+            </p>
         </div>
 
-        <div class="col-lg-4">
-            <div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
-                <div class="card-body p-4">
-                    <h4 class="mb-3">Course Information</h4>
-
-                    <div class="mb-3">
-                        <strong>Level:</strong>
-                        <span class="float-end">@Model.Level</span>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong>Language:</strong>
-                        <span class="float-end">@Model.Language</span>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong>Total Lessons:</strong>
-                        <span class="float-end">@Model.TotalLessons</span>
-                    </div>
-
-                    <div class="mb-3">
-                        <strong>Duration:</strong>
-                        <span class="float-end">
-                            @(Model.DurationInMinutes / 60) Hours
-                            @(Model.DurationInMinutes % 60) Minutes
-                        </span>
-                    </div>
-
-                    <hr />
-
-                    <div class="mb-4">
-                        @if (Model.DiscountPrice.HasValue)
-                        {
-                            <span class="fs-2 fw-bold text-success">
-                                ৳@Model.DiscountPrice.Value.ToString("N0")
-                            </span>
-
-                            <span class="text-muted text-decoration-line-through ms-2">
-                                ৳@Model.Price.ToString("N0")
-                            </span>
-                        }
-                        else
-                        {
-                            <span class="fs-2 fw-bold text-success">
-                                ৳@Model.Price.ToString("N0")
-                            </span>
-                        }
-                    </div>
-
-                    @if (Model.IsPublished)
-                    {
-                        <a asp-controller="Enrollment"
-                           asp-action="Create"
-                           asp-route-courseId="@Model.Id"
-                           class="btn btn-primary w-100 mb-2">
-                            Enroll Now
-                        </a>
-                    }
-                    else
-                    {
-                        <button class="btn btn-secondary w-100 mb-2" disabled>
-                            Coming Soon
-                        </button>
-                    }
-
-                    <a asp-action="Index" class="btn btn-outline-secondary w-100">
-                        Back to Courses
-                    </a>
-                </div>
-            </div>
-        </div>
+        <a asp-controller="Courses"
+           asp-action="Index"
+           class="course-btn-cancel">
+            Back to Courses
+        </a>
     </div>
-</div> *@
+
+    <form asp-controller="Course"
+          asp-action="EditCourse"
+          method="post"
+          id="editCourseForm">
+
+        @Html.AntiForgeryToken()
+
+        <input asp-for="CourseId" type="hidden" />
+
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger mb-3"></div>
+
+        <div class="course-form-card">
+
+            <h4 class="course-section-title">
+                Basic Course Information
+            </h4>
+
+            <div class="row g-4">
+
+                <div class="col-md-12">
+                    <label asp-for="Title" class="form-label">
+                        Course Title
+                        <span class="course-required">*</span>
+                    </label>
+
+                    <input asp-for="Title"
+                           class="form-control"
+                           maxlength="200"
+                           placeholder="Enter course title" />
+
+                    <span asp-validation-for="Title"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-12">
+                    <label asp-for="Description" class="form-label">
+                        Course Description
+                    </label>
+
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="5"
+                              placeholder="Enter course description"></textarea>
+
+                    <span asp-validation-for="Description"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-12">
+                    <label asp-for="InstructorId" class="form-label">
+                        Select Instructor
+                        <span class="course-required">*</span>
+                    </label>
+
+                    <select asp-for="InstructorId"
+                            asp-items="ViewBag.Instructors"
+                            class="form-select">
+                        <option value="0">
+                            -- Select Instructor --
+                        </option>
+                    </select>
+
+                    <span asp-validation-for="InstructorId"
+                          class="text-danger small"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="course-form-card">
+
+            <h4 class="course-section-title">
+                Pricing Information
+            </h4>
+
+            <div class="course-pricing-box">
+                <div class="form-check form-switch">
+
+                    <input asp-for="IsFree"
+                           class="form-check-input"
+                           type="checkbox"
+                           id="isFreeSwitch" />
+
+                    <label class="form-check-label fw-semibold"
+                           for="isFreeSwitch">
+                        Free Course
+                    </label>
+                </div>
+
+                <p class="course-help-text mb-0">
+                    Enable this option if the course is free.
+                </p>
+            </div>
+
+            <div class="row" id="priceSection">
+                <div class="col-md-6">
+
+                    <label asp-for="Price" class="form-label">
+                        Course Price (BDT)
+                    </label>
+
+                    <div class="input-group">
+                        <span class="input-group-text">BDT</span>
+
+                        <input asp-for="Price"
+                               type="number"
+                               step="0.01"
+                               min="0"
+                               class="form-control"
+                               id="coursePrice" />
+                    </div>
+
+                    <span asp-validation-for="Price"
+                          class="text-danger small"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-form-actions">
+
+            <a asp-controller="Course"
+               asp-action="Index"
+               class="course-btn-cancel">
+                Cancel
+            </a>
+
+            <button type="submit" class="course-btn-save">
+                Update Course
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<partial name="_ValidationScriptsPartial" />
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const freeSwitch =
+            document.getElementById("isFreeSwitch");
+
+        const priceSection =
+            document.getElementById("priceSection");
+
+        const priceInput =
+            document.getElementById("coursePrice");
+
+        function updatePrice() {
+            if (freeSwitch.checked) {
+                priceSection.style.display = "none";
+                priceInput.value = "0";
+            } else {
+                priceSection.style.display = "";
+            }
+        }
+
+        freeSwitch.addEventListener("change", updatePrice);
+
+        updatePrice();
+    });
+</script>

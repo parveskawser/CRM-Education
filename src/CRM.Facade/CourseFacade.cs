@@ -43,10 +43,10 @@ namespace CRM.Facade
 
         public async Task<bool> UpdateCourseAsync(Course course)
         {
-            var existingCourse = await _courseRepository.GetByIdAsync(course.CourseId);
+            //var existingCourse = await _courseRepository.GetByIdAsync(course.CourseId);
 
-            if (existingCourse == null)
-                return false;
+            //if (existingCourse == null)
+            //    return false;
 
             if (string.IsNullOrWhiteSpace(course.Title))
                 throw new Exception("Course title is required.");
@@ -66,7 +66,7 @@ namespace CRM.Facade
             //existingCourse.IsPublished = course.IsPublished;
             //existingCourse.IsFeatured = course.IsFeatured;
 
-            await _courseRepository.UpdateAsync(existingCourse);
+            await _courseRepository.UpdateAsync(course);
             return true;
         }
 

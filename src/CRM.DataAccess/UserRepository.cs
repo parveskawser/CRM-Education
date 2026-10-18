@@ -51,5 +51,9 @@ namespace CRM.DataAccess
             _dbContext.Users.Remove(user);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<User?> GetUserByEmailPasswordAsync(string email, string password)
+        {
+            return await _dbContext.Users.Where(s=>s.Email == email && s.PasswordHash == password).FirstOrDefaultAsync();
+        }
     }
 }

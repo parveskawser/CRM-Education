@@ -6,7 +6,7 @@
     Layout = "_PrivateLayout";
 }
   
-
+ 
 <style>
     .course-page {
         padding: 25px;
@@ -181,13 +181,13 @@
                             <td>
                                 <div class="action-group">
 
-                                    <a asp-action="Details"
+                                    <a asp-action="Detail"
                                        asp-route-id="@course.CourseId"
                                        class="btn btn-sm btn-outline-primary">
                                         View
                                     </a>
 
-                                    <a asp-action="Edit"
+                                    <a asp-action="AddCourse"
                                        asp-route-id="@course.CourseId"
                                        class="btn btn-sm btn-outline-warning">
                                         Edit
@@ -230,4 +230,20 @@
                 });
             });
     </script>
- 
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <span>
+        Welcome, @User.Identity.Name
+    </span>
+
+    <form asp-controller="Account"
+          asp-action="Logout"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-danger">
+            Logout
+        </button>
+    </form>
+}
