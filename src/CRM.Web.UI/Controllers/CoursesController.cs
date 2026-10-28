@@ -97,6 +97,26 @@ namespace CRM.Web.UI.Controllers
             return View(course);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Course course = await _courseFacade.GetCourseByIdAsync(id);
+            if (course == null)
+                return RedirectPermanent("/Home/NotFound");
+
+            return View(course);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(Course course)
+        {
+            //Course course = await _courseFacade.GetCourseByIdAsync(id);
+            bool result = await _courseFacade.DeleteCourseAsync(course.CourseId);
+
+            if (result)
+                return RedirectPermanent("/Courses");
+
+            return RedirectPermanent("/Home/Error");
+        }
 
         [HttpGet]
         public async Task<IActionResult> AddCourse(int id)
