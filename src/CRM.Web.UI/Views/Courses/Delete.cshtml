@@ -1,0 +1,26 @@
+﻿@using CRM.Entities
+@model Course
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+Are you sure want to delete? '
+ <form asp-controller="Courses"
+          asp-action="Delete"
+          method="post"
+          id="createCourseForm">
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="CourseId" name="CourseId" value="@Model.CourseId" />
+
+    <button type="submit"
+            class="btn-save"
+            id="saveCourseBtn">
+        Delete
+    </button>
+</form>
+
+ 
