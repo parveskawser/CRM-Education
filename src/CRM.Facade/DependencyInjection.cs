@@ -7,6 +7,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using CRM.DataAccess.Implementation;
+using CRM.Facade.Implementation;
 
 namespace CRM.Facade
 {

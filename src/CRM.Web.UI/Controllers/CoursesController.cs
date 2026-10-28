@@ -3,6 +3,7 @@ using CRM.Facade.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using CRM.Framework;
 
 namespace CRM.Web.UI.Controllers
 {
@@ -18,12 +19,27 @@ namespace CRM.Web.UI.Controllers
             _instructorProfileFacade = instructorProfileFacade;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
+            //courses
             var courses = await _courseFacade.GetCoursesAsync();
 
             //Course course = new Course();
             //List<Course> list = new List<Course>();
+
+            //Dummy code 
+            int idvalue = 500; // no change get zero
+
+            string invoiceno = "INV00" + idvalue.ToString();//Failed
+            //INV00500
+             
+            string ainvoiceno = $"INV{idvalue:D5}";
+            //INV00500
+
+            string finalInvoiceNo = idvalue.ToInvoiceNo();
+
+
             return View(courses);
         }
 
