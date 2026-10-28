@@ -1,0 +1,246 @@
+﻿@using CRM.Entities
+@model List<Payment>
+
+@{
+    ViewData["Title"] = "Payment Management";
+    Layout = "_PrivateLayout";
+}
+
+<style>
+    .payment-page {
+        padding: 25px;
+        width: 100%;
+    }
+
+    .payment-card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        border: 1px solid #e6e8f0;
+    }
+
+    .payment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .payment-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #17233d;
+    }
+
+    .btn-purple {
+        background: #635bdf;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 18px;
+        text-decoration: none;
+    }
+
+        .btn-purple:hover {
+            background: #5046c7;
+            color: white;
+        }
+
+    .payment-table th {
+        background: #f4f5fb;
+        padding: 15px;
+        font-weight: 600;
+        color: #667085;
+        white-space: nowrap;
+    }
+
+    .payment-table td {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    .payment-table tbody tr:hover {
+        background: #fafaff;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .status-completed {
+        background: #e7f8ef;
+        color: #17844d;
+    }
+
+    .status-pending {
+        background: #fff4d6;
+        color: #9a6700;
+    }
+
+    .status-failed {
+        background: #fde8e8;
+        color: #c62828;
+    }
+
+    .status-refunded {
+        background: #eeeafd;
+        color: #635bdf;
+    }
+
+    .action-group {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+</style>
+
+<div class="payment-page">
+    <div class="payment-card">
+
+        <div class="payment-header">
+            <div>
+                <h3 class="payment-title">Payment Management</h3>
+                <p class="text-muted mb-0">
+                    Manage all student payments
+                </p>
+            </div>
+
+            <a asp-controller="Payments"
+               asp-action="AddPayment"
+               class="btn-purple">
+                + Add New Payment
+            </a>
+        </div>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+        <div class="mb-4">
+            <input type="search"
+                   id="paymentSearch"
+                   class="form-control"
+                   style="max-width:350px;"
+                   placeholder="Search payments..." />
+        </div>
+
+        <div class="table-responsive">
+            <table class="table payment-table" id="paymentTable">
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Enrollment ID</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Transaction ID</th>
+                        <th>Paid At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var payment in Model)
+                        {
+                            <tr>
+                                <td>@payment.PaymentId</td>
+
+                                <td>@payment.EnrollmentId</td>
+
+                                <td>
+                                    @payment.Amount.ToString("N2") BDT
+                                </td>
+
+                                <td>@payment.PaymentMethod</td>
+
+                                <td>
+                                    @{
+                                        var statusClass =
+                                            payment.PaymentStatus switch
+                                            {
+                                                "Completed" => "status-completed",
+                                                "Pending" => "status-pending",
+                                                "Failed" => "status-failed",
+                                                "Refunded" => "status-refunded",
+                                                _ => "status-pending"
+                                            };
+                                    }
+
+                                    <span class="status-badge @statusClass">
+                                        @payment.PaymentStatus
+                                    </span>
+                                </td>
+
+                                <td>
+                                    @(string.IsNullOrWhiteSpace(payment.TransactionId)
+                                        ? "N/A"
+                                        : payment.TransactionId)
+                                </td>
+
+                                <td>
+                                    @payment.PaidAt.ToString("dd MMM yyyy")
+                                </td>
+
+                                <td>
+                                    <div class="action-group">
+                                        <a asp-action="Detail"
+                                           asp-route-id="@payment.PaymentId"
+                                           class="btn btn-sm btn-outline-primary">
+                                            View
+                                        </a>
+
+                                        <a asp-action="EditPayment"
+                                           asp-route-id="@payment.PaymentId"
+                                           class="btn btn-sm btn-outline-warning">
+                                            Edit
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@payment.PaymentId"
+                                           class="btn btn-sm btn-outline-danger">
+                                            Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center text-muted">
+                                No payments found.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("paymentSearch")
+        .addEventListener("input", function () {
+
+            const search = this.value.toLowerCase();
+
+            document.querySelectorAll("#paymentTable tbody tr")
+                .forEach(row => {
+                    row.style.display =
+                        row.innerText.toLowerCase().includes(search)
+                            ? ""
+                            : "none";
+                });
+        });
+</script>
