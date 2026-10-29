@@ -1,0 +1,131 @@
+﻿@using CRM.Entities
+@model Payment
+
+@{
+    ViewData["Title"] = "Delete Payment";
+    Layout = "_PrivateLayout";
+}
+
+<style>
+    .delete-page {
+        padding: 28px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .delete-card {
+        background: white;
+        border: 1px solid #e6e8f0;
+        border-radius: 14px;
+        padding: 30px;
+    }
+
+    .delete-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #17233d;
+    }
+
+    .delete-message {
+        color: #8190a7;
+        margin-bottom: 25px;
+    }
+
+    .delete-item {
+        background: #f8f9fe;
+        padding: 15px;
+        border-radius: 9px;
+        margin-bottom: 12px;
+    }
+
+    .delete-label {
+        color: #8190a7;
+        font-size: 13px;
+    }
+
+    .delete-value {
+        color: #17233d;
+        font-weight: 600;
+    }
+
+    .delete-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 11px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+        .btn-delete:hover {
+            background: #bb2d3b;
+        }
+</style>
+
+<div class="delete-page">
+    <div class="delete-card">
+
+        <h2 class="delete-title">Delete Payment</h2>
+
+        <p class="delete-message">
+            Are you sure you want to delete this payment?
+            This action cannot be undone.
+        </p>
+
+        <div class="delete-item">
+            <div class="delete-label">Payment ID</div>
+            <div class="delete-value">@Model.PaymentId</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Enrollment ID</div>
+            <div class="delete-value">@Model.EnrollmentId</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Amount</div>
+            <div class="delete-value">
+                @Model.Amount.ToString("N2") BDT
+            </div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Payment Method</div>
+            <div class="delete-value">@Model.PaymentMethod</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Payment Status</div>
+            <div class="delete-value">@Model.PaymentStatus</div>
+        </div>
+
+        <form asp-controller="Payments"
+              asp-action="Delete"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" asp-for="PaymentId" />
+
+            <div class="delete-actions">
+                <a asp-controller="Payments"
+                   asp-action="Index"
+                   class="btn btn-outline-secondary">
+                    Cancel
+                </a>
+
+                <button type="submit" class="btn-delete">
+                    Confirm Delete
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

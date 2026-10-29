@@ -69,10 +69,6 @@ namespace CRM.Web.UI.Controllers
         {
             LoadPaymentOptions();
 
-            if (!ModelState.IsValid)
-            {
-                return View(payment);
-            }
 
             try
             {
@@ -113,7 +109,6 @@ namespace CRM.Web.UI.Controllers
 
         // POST: /Payments/EditPayment
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPayment(Payment payment)
         {
             if (payment.EnrollmentId <= 0)
@@ -124,13 +119,7 @@ namespace CRM.Web.UI.Controllers
                 );
             }
 
-            if (payment.Amount < 0)
-            {
-                ModelState.AddModelError(
-                    nameof(payment.Amount),
-                    "Amount cannot be negative."
-                );
-            }
+            
 
             var methods = new[]
             {
@@ -143,27 +132,6 @@ namespace CRM.Web.UI.Controllers
                 "Pending", "Completed", "Failed", "Refunded"
             };
 
-            if (!methods.Contains(payment.PaymentMethod))
-            {
-                ModelState.AddModelError(
-                    nameof(payment.PaymentMethod),
-                    "Select a valid payment method."
-                );
-            }
-
-            if (!statuses.Contains(payment.PaymentStatus))
-            {
-                ModelState.AddModelError(
-                    nameof(payment.PaymentStatus),
-                    "Select a valid payment status."
-                );
-            }
-
-            if (!ModelState.IsValid)
-            {
-                LoadPaymentOptions();
-                return View(payment);
-            }
 
             try
             {

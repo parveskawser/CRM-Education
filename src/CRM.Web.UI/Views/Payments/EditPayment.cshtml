@@ -1,0 +1,248 @@
+﻿@using CRM.Entities
+@model Payment
+
+@{
+    ViewData["Title"] = "Edit Payment";
+    Layout = "_PrivateLayout";
+}
+
+<style>
+    .payment-form-page {
+        padding: 28px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .page-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        gap: 15px;
+    }
+
+    .page-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #17233d;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+        color: #8190a7;
+    }
+
+    .form-card {
+        background: white;
+        border: 1px solid #e8ebf3;
+        border-radius: 14px;
+        padding: 28px;
+        margin-bottom: 22px;
+    }
+
+    .section-title {
+        font-size: 17px;
+        font-weight: 650;
+        color: #17233d;
+        padding-bottom: 17px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid #eef0f5;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 13px;
+        color: #45536c;
+        margin-bottom: 8px;
+    }
+
+    .form-control, .form-select {
+        border: 1px solid #e1e5ef;
+        border-radius: 9px;
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #635bdf;
+            box-shadow: 0 0 0 3px rgba(99,91,223,.10);
+        }
+
+    .btn-save {
+        background: #635bdf;
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 9px;
+        font-weight: 600;
+    }
+
+        .btn-save:hover {
+            background: #5148cc;
+            color: white;
+        }
+
+    .btn-cancel {
+        border: 1px solid #dce1eb;
+        color: #64748b;
+        padding: 12px 25px;
+        border-radius: 9px;
+        text-decoration: none;
+        background: white;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    @@media (max-width: 768px) {
+        .payment-form-page {
+            padding: 15px;
+        }
+
+        .form-card {
+            padding: 18px;
+        }
+
+        .page-top {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="payment-form-page">
+    <div class="page-top">
+        <div>
+            <h2 class="page-title">Edit Payment</h2>
+            <p class="page-subtitle">
+                Update payment information
+            </p>
+        </div>
+
+        <a asp-controller="Payments"
+           asp-action="Index"
+           class="btn-cancel">
+            Back to Payments
+        </a>
+    </div>
+
+    <form asp-controller="Payments"
+          asp-action="EditPayment"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input asp-for="PaymentId" type="hidden" />
+
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger mb-3"></div>
+
+        <div class="form-card">
+            <h4 class="section-title">Payment Information</h4>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label asp-for="EnrollmentId" class="form-label">
+                        Enrollment ID
+                    </label>
+
+                    <input asp-for="EnrollmentId"
+                           type="number"
+                           min="1"
+                           class="form-control" />
+
+                    <span asp-validation-for="EnrollmentId"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Amount" class="form-label">
+                        Amount (BDT)
+                    </label>
+
+                    <input asp-for="Amount"
+                           type="number"
+                           min="0"
+                           step="0.01"
+                           class="form-control" />
+
+                    <span asp-validation-for="Amount"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="PaymentMethod" class="form-label">
+                        Payment Method
+                    </label>
+
+                    <select asp-for="PaymentMethod" class="form-select">
+                        <option value="">-- Select Method --</option>
+                        @foreach (string method in ViewBag.PaymentMethods)
+                        {
+                            <option value="@method">@method</option>
+                        }
+                    </select>
+
+                    <span asp-validation-for="PaymentMethod"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="PaymentStatus" class="form-label">
+                        Payment Status
+                    </label>
+
+                    <select asp-for="PaymentStatus" class="form-select">
+                        <option value="">-- Select Status --</option>
+                        @foreach (string status in ViewBag.PaymentStatuses)
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+
+                    <span asp-validation-for="PaymentStatus"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-12">
+                    <label asp-for="TransactionId" class="form-label">
+                        Transaction ID
+                    </label>
+
+                    <input asp-for="TransactionId"
+                           class="form-control"
+                           maxlength="100"
+                           placeholder="Enter transaction reference" />
+
+                    <span asp-validation-for="TransactionId"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Original Payment Date</label>
+                    <input value="@Model.PaidAt.ToString("dd MMM yyyy HH:mm") UTC"
+                           class="form-control"
+                           readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a asp-controller="Payments"
+               asp-action="Index"
+               class="btn-cancel">
+                Cancel
+            </a>
+
+            <button type="submit" class="btn-save">
+                Update Payment
+            </button>
+        </div>
+    </form>
+</div>
+
+<partial name="_ValidationScriptsPartial" />

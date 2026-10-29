@@ -1,0 +1,152 @@
+﻿@using CRM.Entities
+@model Payment
+
+@{
+    ViewData["Title"] = "Payment Details";
+    Layout = "_PrivateLayout";
+}
+
+<style>
+    .detail-page {
+        padding: 28px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .detail-card {
+        background: white;
+        border: 1px solid #e6e8f0;
+        border-radius: 14px;
+        padding: 30px;
+    }
+
+    .detail-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #17233d;
+    }
+
+    .detail-subtitle {
+        color: #8190a7;
+        margin-bottom: 25px;
+    }
+
+    .detail-item {
+        background: #f8f9fe;
+        padding: 18px;
+        border-radius: 10px;
+        height: 100%;
+    }
+
+    .detail-label {
+        color: #8190a7;
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
+
+    .detail-value {
+        color: #17233d;
+        font-size: 16px;
+        font-weight: 600;
+        overflow-wrap: anywhere;
+    }
+
+    .detail-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+    }
+</style>
+
+<div class="detail-page">
+    <div class="detail-card">
+
+        <h2 class="detail-title">Payment Details</h2>
+
+        <p class="detail-subtitle">
+            View the complete payment information
+        </p>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Payment ID</div>
+                    <div class="detail-value">@Model.PaymentId</div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Enrollment ID</div>
+                    <div class="detail-value">@Model.EnrollmentId</div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Payment Amount</div>
+                    <div class="detail-value">
+                        @Model.Amount.ToString("N2") BDT
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Payment Method</div>
+                    <div class="detail-value">@Model.PaymentMethod</div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Payment Status</div>
+                    <div class="detail-value">@Model.PaymentStatus</div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Transaction ID</div>
+                    <div class="detail-value">
+                        @(string.IsNullOrWhiteSpace(Model.TransactionId)
+                            ? "N/A"
+                            : Model.TransactionId)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="detail-item">
+                    <div class="detail-label">Paid At (UTC)</div>
+                    <div class="detail-value">
+                        @Model.PaidAt.ToString("dd MMM yyyy HH:mm")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-actions">
+            <a asp-controller="Payments"
+               asp-action="Index"
+               class="btn btn-outline-secondary">
+                Back to Payments
+            </a>
+
+            <a asp-controller="Payments"
+               asp-action="EditPayment"
+               asp-route-id="@Model.PaymentId"
+               class="btn btn-warning">
+                Edit Payment
+            </a>
+
+            <a asp-controller="Payments"
+               asp-action="Delete"
+               asp-route-id="@Model.PaymentId"
+               class="btn btn-danger">
+                Delete Payment
+            </a>
+        </div>
+    </div>
+</div>
